@@ -1,0 +1,15 @@
+SMAP
+SuccessMessage_jsp.java
+JSP
+*S JSP
+*F
++ 0 SuccessMessage.jsp
+SuccessMessage.jsp
+*L
+5,30:54
+34:110,11
+35:121
+36:122,3
+37,4:125
+40,7:86
+*E
