@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author pasindu
  */
-public class SearchMain extends HttpServlet {
+public class DeleteMain extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +43,10 @@ public class SearchMain extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchMain</title>");
+            out.println("<title>Servlet DeleteMain</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SearchMain at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteMain at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,27 +66,25 @@ public class SearchMain extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         ArrayList<MainClassification> mainSearch = new ArrayList<>();
-        String type = request.getParameter("type");
-        if (type.equals("all")) {
-            try {
-                mainSearch = mainDao.getAllMainClass();
-                request.setAttribute("mainClassifications", mainSearch);
-                request.getRequestDispatcher("/SearchMainClassification.jsp").forward(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(SearchMain.class.getName()).log(Level.SEVERE, null, ex);
+        String mainId = request.getParameter("mainId");
+        try {
+            boolean test = mainDao.deleteMainClassification(mainId);
+            if (test) {
+                try {
+                    mainSearch = mainDao.getAllMainClass();
+                    request.setAttribute("mainClassifications", mainSearch);
+                    request.getRequestDispatcher("/SearchMainClassification.jsp").forward(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SearchMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        } else if(type.equals("search")){
-            String mainClassification = request.getParameter("mainClassification");
-            String selection = request.getParameter("selection");
-            try {
-                mainSearch = mainDao.getMainByOneField(selection, mainClassification);
-                request.setAttribute("mainClassifications", mainSearch);
+            else{
+                request.setAttribute("error","<div class=\"alert alert-warning\"> There are sub classificatons for this, Please delete them first !</div>");
                 request.getRequestDispatcher("/SearchMainClassification.jsp").forward(request, response);
-            } catch (Exception ex) {
-                Logger.getLogger(SearchBook.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteMain.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
@@ -100,7 +98,7 @@ public class SearchMain extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**

@@ -44,6 +44,10 @@
         <servlet-name>GetUpdate</servlet-name>
         <servlet-class>com.pacage.controller.GetUpdate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteMain</servlet-name>
+        <servlet-class>com.pacage.controller.DeleteMain</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
         <url-pattern>/BookServlet</url-pattern>
@@ -90,6 +94,10 @@
     <servlet-mapping>
         <servlet-name>GetUpdate</servlet-name>
         <url-pattern>/GetUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMain</servlet-name>
+        <url-pattern>/DeleteMain</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

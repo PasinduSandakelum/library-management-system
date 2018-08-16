@@ -106,24 +106,40 @@
 
         <div class="container" style="color: #33334d">
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-sm-10 col-sm-offset-2">
 
                     <div class="panel panel-default">
-<!--                        <div class="panel-heading">
-                            <h3 class="panel-title">Search Main Classifications</h3>
-                        </div>-->
+                        <!--                        <div class="panel-heading">
+                                                    <h3 class="panel-title">Search Main Classifications</h3>
+                                                </div>-->
                         <div class="panel-body">
                             <form id="addForm" method="get" class="form-horizontal" action="SearchMain">
                                 <div class="form-group">
+                                    <div class="col-sm-3">             
+                                        <select name="selection" class="form-control" id="selection">  
+                                            <option>Select</option>        
+                                            <option value="mainId">Main ID</option>        
+                                            <option value="mainClassificationName">Name</option>             
+                                        </select>         
+                                    </div>
                                     <!--<label class="col-sm-4 control-label" for="mainClassification">Search : </label>-->
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" placeholder="Search" name="mainClassification" id="mainClassification">
                                     </div>
+
                                     <div class="col-sm-2">
-                                        <button type="submit" class="btn btn-md"><span class="glyphicon glyphicon-search"></span></button>
+                                        <button type="submit" class="btn btn-md" name="type" value="search"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a href="SearchMain?type=all"><span class="btn btn-md" ><span class="glyphicon glyphicon-search"></span>View All</span></a>
                                     </div>
                                 </div>
                             </form>
+                            <div class="form-group">
+                                <div class="col-sm-6 col-sm-offset-4">
+                                    ${error} 
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -150,7 +166,13 @@
                                     <c:forEach items="${mainClassifications}" var="b">
                                         <tr>
                                             <td>${b.getMid()}</td>
-                                            <td>${b.getMname()}</td>                                
+                                            <td>${b.getMname()}</td>  
+                                            <td>
+                                                <a href=""><span class="glyphicon glyphicon-pencil"></span></a>                                    
+                                                &nbsp;
+                                                <a href="DeleteMain?mainId=${b.getMid()}"><span class="glyphicon glyphicon-trash"></span></a>
+
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -161,5 +183,5 @@
                 </div>
             </div>
         </div>
-</body>
+    </body>
 </html>

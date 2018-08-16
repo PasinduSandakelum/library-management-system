@@ -35,6 +35,28 @@ public class MainClassificationDao{
         
         return main;
     }
+    public ArrayList<MainClassification> getMainByOneField(String field, String val) throws SQLException {
+        con = DbConnect.getConnection();
+        String q = "SELECT * FROM main_classification WHERE " + field + "=?";
+        
+        try {
+            ArrayList<MainClassification> mainClassifications = new ArrayList<>();
+            pst = con.prepareStatement(q);
+            pst.setString(1, val);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                MainClassification bs = extractMainClassification(rs);
+                mainClassifications.add(bs);
+            }
+            return mainClassifications;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public MainClassification getMainClassification(String mainId){
         String q = "SELECT * FROM main_classification WHERE mainId=?";
         try {
@@ -142,20 +164,20 @@ public class MainClassificationDao{
         }
         return false;
     }
-    public boolean deleteMainClassification(MainClassification nw) throws SQLException{
+    public boolean deleteMainClassification(String mainId) throws SQLException{
         con = DbConnect.getConnection();
         String q = "DELETE FROM main_classification WHERE mainId=?";
         
         String q1 = "SELECT * FROM sub_classification WHERE mainId=?";
         try {
             pst = con.prepareStatement(q1);
-            pst.setString(1, nw.getMid());
+            pst.setString(1, mainId);
             rs=pst.executeQuery();
             if(!rs.next()){
                 pst = con.prepareStatement(q);
             
                 
-                pst.setString(1,nw.getMid());
+                pst.setString(1,mainId);
             
             
                 int i = pst.executeUpdate(); 
@@ -163,6 +185,8 @@ public class MainClassificationDao{
                 if(i==1){
                     return true;
                 }
+            }else{
+                return false;
             }
            
         }  catch (SQLException e) {
