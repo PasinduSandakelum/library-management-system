@@ -48,6 +48,10 @@
         <servlet-name>DeleteMain</servlet-name>
         <servlet-class>com.pacage.controller.DeleteMain</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FillMain</servlet-name>
+        <servlet-class>com.pacage.controller.FillMain</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
         <url-pattern>/BookServlet</url-pattern>
@@ -98,6 +102,10 @@
     <servlet-mapping>
         <servlet-name>DeleteMain</servlet-name>
         <url-pattern>/DeleteMain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FillMain</servlet-name>
+        <url-pattern>/FillMain</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

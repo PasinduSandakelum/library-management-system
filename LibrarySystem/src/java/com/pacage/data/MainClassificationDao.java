@@ -73,20 +73,20 @@ public class MainClassificationDao{
         return null;
     }
     
-    public ArrayList getAllMainClass() throws SQLException{
+    public ArrayList<MainClassification> getAllMainClassifications() throws SQLException{
         con = DbConnect.getConnection();
         String q = "SELECT * FROM main_classification";
         try {
             pst = con.prepareStatement(q);
             rs = pst.executeQuery();
             
-           ArrayList<MainClassification> l = new ArrayList<>();
+           ArrayList<MainClassification> listOfMain = new ArrayList<>();
             while(rs.next()){
                 MainClassification m = extractMainClassification(rs);
-                l.add(m);
+                listOfMain.add(m);
             }
             
-            return l;
+            return listOfMain;
             
         } catch (SQLException e) {
             System.out.println(e);

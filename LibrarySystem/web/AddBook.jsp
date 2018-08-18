@@ -43,75 +43,11 @@
                 form.action = "ChangeSub";
                 form.submit();
             }
-            ;
         </script>
     </head>
     <body>
-        <header>		
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="navigation">
-                    <div class="container">					
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <div class="navbar-brand">
-                                <a href="index.html"><h1><span>Library</span>System</h1></a>
-                            </div>
-                        </div>
 
-                        <div class="navbar-collapse collapse">							
-                            <div class="menu">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li class="dropdown">
-                                        <a id="dLabel" role="button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" href="index.html">
-                                            <span class="glyphicon glyphicon-home">&nbsp;Home</span>
-                                        </a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a id="dLabel" role="button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" href="book.html">
-                                            Books<span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a tabindex="-1" href="AddBook.jsp">Add Books</a></li>
-                                            <li><a tabindex="-1" href="SearchBook.jsp">Search Books</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a id="dLabel" role="button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" href="classification.html">
-                                            Classifications<span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-
-                                            <li class="dropdown-submenu">
-                                                <a class="test" tabindex="-1" href="#">Main Classification</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a tabindex="-1" href="AddMainClass.jsp">Add Main</a></li>
-                                                    <li><a tabindex="-1" href="SearchMainClassification.jsp">Search Main</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li class="dropdown-submenu">
-                                                <a class="test" tabindex="-1" href="#">Sub Classification</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a tabindex="-1" href="AddSubClass.jsp">Add Sub</a></li>
-                                                    <li><a tabindex="-1" href="SearchSubClassification.jsp">Search Sub</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>						
-                    </div>
-                </div>	
-            </nav>		
-        </header>	
-
+        <jsp:include page="Header.jsp"/>
 
         <div id="breadcrumb">
             <div class="container">	
@@ -137,32 +73,32 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="bookId">Book ID : </label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter book ID" name="bookId" id="bookId">
+                                        <input type="text" class="form-control" placeholder="Enter book ID" name="bookId" id="bookId" value="${bookId}">
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="title">Title:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter book title" id="title" name="title">
+                                        <input type="text" class="form-control" placeholder="Enter book title" id="title" name="title" value="${title}">
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="author">Author:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter book author" name="author" id="author">
+                                        <input type="text" class="form-control" placeholder="Enter book author" name="author" id="author" value="${author}">
                                     </div>
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="mainClassification">Main Classification:</label>
+                                    <label class="col-sm-4 control-label" for="mainId">Main Classification:</label>
                                     <div class="col-sm-5">             
-                                        <select name="mainClassificationId" class="form-control" id="mainClassification" onChange="changeSub(this.form);">  
-                                            <option>Select</option>  
-                                            <option>Engineering</option>  
+                                        <select name="mainId" class="form-control" id="mainId" onchange="changeSub(this.form);" value="${mainId}">  
+                                            <option value="0">Select</option>  
+                                            <!--<option>Engineering</option>-->  
                                             <c:forEach var="item" items="${mainClassifications}">
-                                                <option value="${item.getMid()}" <c:if test="${item.getMid() eq mainClassificationId}" >Selected="true"</c:if>>${item.getMname()}</option>
+                                                <option value="${item.getMid()}" <c:if test="${item.getMid() eq mainId}" >Selected="true"</c:if>>${item.getMname()}</option>
                                             </c:forEach>
                                         </select>
 
@@ -175,8 +111,6 @@
 
                                         <select name="subClassificationId" class="form-control" id="subClassificationId">  
                                             <option>Select</option>
-                                            <option value="S01">Software Engineering</option>
-                                            <option value="S02">Computer Engineering</option>
                                             <c:forEach var="item" items="${subClassifications}">
                                                 <option value="${item.getSid()}"> ${item.getSname()}</option>
                                             </c:forEach>
@@ -188,7 +122,7 @@
                                     <label class="col-sm-4 control-label" for="yearOfPrint">Year of Printed:</label>
 
                                     <div class='input-group date' id='datepicker1' class="col-sm-5">
-                                        <input type='text' class="form-control" name="yearOfPrint" id="yearOfPrint"/>
+                                        <input type='text' class="form-control" name="yearOfPrint" id="yearOfPrint" value="${yearOfPrint}"/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -197,7 +131,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="lastPrintYear">Last Printed Year:</label>
                                     <div class='input-group date' id='datepicker2' class="col-sm-5">
-                                        <input type='text' class="form-control" name="lastPrintYear" id="lastPrintYear"/>
+                                        <input type='text' class="form-control" name="lastPrintYear" id="lastPrintYear" value="${lastPrintYear}"/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -207,14 +141,14 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="isbnNo">ISBN No:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter ISBN number" name="isbnNo" id="isbnNo">
+                                        <input type="text" class="form-control" placeholder="Enter ISBN number" name="isbnNo" id="isbnNo" value="${isbnNo}"/>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="noOfPages">No of Pages:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter number of pages" name="noOfPages" id="noOfPages">
+                                        <input type="text" class="form-control" placeholder="Enter number of pages" name="noOfPages" id="noOfPages" value="${noOfPages}"/>
                                     </div>
 
                                 </div>
@@ -236,6 +170,7 @@
                 </div>
             </div>
         </div>
+
         <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
         <script>
                                             $(function () {

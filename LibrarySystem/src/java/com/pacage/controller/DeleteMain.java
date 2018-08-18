@@ -71,7 +71,7 @@ public class DeleteMain extends HttpServlet {
             boolean test = mainDao.deleteMainClassification(mainId);
             if (test) {
                 try {
-                    mainSearch = mainDao.getAllMainClass();
+                    mainSearch = mainDao.getAllMainClassifications();
                     request.setAttribute("mainClassifications", mainSearch);
                     request.getRequestDispatcher("/SearchMainClassification.jsp").forward(request, response);
                 } catch (SQLException ex) {

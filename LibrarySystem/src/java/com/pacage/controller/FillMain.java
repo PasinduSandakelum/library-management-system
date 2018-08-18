@@ -8,9 +8,9 @@ package com.pacage.controller;
 import com.pacage.data.MainClassificationDao;
 import com.pacage.data.SubClassificationDao;
 import com.pacage.model.MainClassification;
-import com.pacage.model.SubClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author pasindu
+ * @author Pasindu
  */
-public class ChangeSub extends HttpServlet {
+public class FillMain extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,34 +38,12 @@ public class ChangeSub extends HttpServlet {
     SubClassificationDao subDao = new SubClassificationDao();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String bookId = request.getParameter("bookId");
-        String title = request.getParameter("title");
-        String author = request.getParameter("author");
-        String yearOfPrint = request.getParameter("yearOfPrint");
-        String lastPrintYear = request.getParameter("lastPrintYear");
-        String isbnNo = request.getParameter("isbnNo");
-        String noOfPages = request.getParameter("noOfPages");
-        String mainId = request.getParameter("mainId");
         try {
-            ArrayList<MainClassification> mainList = new ArrayList<>();
-            mainList = mainDao.getAllMainClassifications();
-            ArrayList<SubClassification> subList = new ArrayList<>();
-            subList = subDao.getAllSubClassOfMainClass(mainId);
+            ArrayList<MainClassification> mainList = mainDao.getAllMainClassifications();
             request.setAttribute("mainClassifications", mainList);
-            request.setAttribute("subClassifications", subList);
-            request.setAttribute("bookId", bookId);
-            request.setAttribute("title", title);
-            request.setAttribute("author", author);
-            request.setAttribute("yearOfPrint", yearOfPrint);
-            request.setAttribute("lastPrintYear", lastPrintYear);
-            request.setAttribute("isbnNo", isbnNo);
-            request.setAttribute("noOfPages", noOfPages);
-            request.setAttribute("mainId", mainId);
-//            request.setAttribute("mainName", request.getParameter("mainClassification"));
-            
             request.getRequestDispatcher("/AddBook.jsp").forward(request, response);
-        } catch (Exception e) {
-            Logger.getLogger(BookServlet.class.getName()).log(Level.SEVERE, null, e);
+        } catch (SQLException ex) {
+            Logger.getLogger(FillMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,7 +60,6 @@ public class ChangeSub extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
     }
 
     /**
@@ -97,7 +74,6 @@ public class ChangeSub extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
     }
 
     /**

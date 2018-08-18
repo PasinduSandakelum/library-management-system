@@ -69,7 +69,7 @@ public class SearchMain extends HttpServlet {
         String type = request.getParameter("type");
         if (type.equals("all")) {
             try {
-                mainSearch = mainDao.getAllMainClass();
+                mainSearch = mainDao.getAllMainClassifications();
                 request.setAttribute("mainClassifications", mainSearch);
                 request.getRequestDispatcher("/SearchMainClassification.jsp").forward(request, response);
             } catch (SQLException ex) {

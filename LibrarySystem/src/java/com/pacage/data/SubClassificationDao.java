@@ -76,15 +76,15 @@ public class SubClassificationDao {
         return null;
     }
 
-    public ArrayList<SubClassification> getAllSubClassOfMainClass(String mcl) throws SQLException {
+    public ArrayList<SubClassification> getAllSubClassOfMainClass(String mainId) throws SQLException {
         con = DbConnect.getConnection();
-        String q = "SELECT * FROM sub_classification WHERE mainId=(SELECT mainId FROM main_classification WHERE mainClassificationName = ? )";
+        String q = "SELECT * FROM sub_classification WHERE mainId=?";
 //        String q1 = "SELECT * FROM sub_classification WHERE mname=?";
         try {
 
             pst = con.prepareStatement(q);
 
-            pst.setString(1, mcl);
+            pst.setString(1, mainId);
             rs = pst.executeQuery();
 
             ArrayList<SubClassification> l = new ArrayList<>();
