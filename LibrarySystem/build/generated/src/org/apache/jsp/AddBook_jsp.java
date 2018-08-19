@@ -182,7 +182,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <div class=\"form-group\">\r\n");
       out.write("                                    <label class=\"col-sm-4 control-label\" for=\"yearOfPrint\">Year of Printed:</label>\r\n");
       out.write("\r\n");
-      out.write("                                    <div class='input-group date' id='datepicker1' class=\"col-sm-5\">\r\n");
+      out.write("                                    <div class='input-group date' id='datepicker1' class=\"col-sm-3\">\r\n");
       out.write("                                        <input type='text' class=\"form-control\" name=\"yearOfPrint\" id=\"yearOfPrint\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${yearOfPrint}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"/>\r\n");
@@ -193,7 +193,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                </div>\r\n");
       out.write("                                <div class=\"form-group\">\r\n");
       out.write("                                    <label class=\"col-sm-4 control-label\" for=\"lastPrintYear\">Last Printed Year:</label>\r\n");
-      out.write("                                    <div class='input-group date' id='datepicker2' class=\"col-sm-5\">\r\n");
+      out.write("                                    <div class='input-group date' id='datepicker2' class=\"col-sm-3\">\r\n");
       out.write("                                        <input type='text' class=\"form-control\" name=\"lastPrintYear\" id=\"lastPrintYear\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${lastPrintYear}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"/>\r\n");
@@ -277,6 +277,9 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                });\r\n");
       out.write("                                            });\r\n");
       out.write("        </script>\r\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Footer.jsp", out, false);
+      out.write("\r\n");
       out.write("    </body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {

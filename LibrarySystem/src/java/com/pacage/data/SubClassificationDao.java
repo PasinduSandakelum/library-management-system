@@ -12,8 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import com.pacage.model.SubClassification;
-import com.pacage.model.subSearch;
+import com.pacage.model.SubSearch;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,6 +27,7 @@ public class SubClassificationDao {
     ResultSet rs = null;
     Connection con = null;
     MainClassificationDao mainDao = new MainClassificationDao();
+
     public SubClassificationDao() {
     }
 
@@ -49,26 +52,26 @@ public class SubClassificationDao {
         return false;
     }
 
-    public ArrayList searchSubClass(String subClassification) throws SQLException {
+    public ArrayList<SubSearch> searchSubClass(String selection, String val) throws SQLException {
         con = DbConnect.getConnection();
-        String q = "SELECT * FROM sub_classification WHERE subClassificationName=?";
+        String q = "SELECT * FROM sub_classification WHERE "+selection+"=?";
         try {
             pst = con.prepareStatement(q);
-            pst.setString(1, subClassification);
+            pst.setString(1, val);
             rs = pst.executeQuery();
-            
-            ArrayList<subSearch> l = new ArrayList<>();
+
+            ArrayList<SubSearch> list = new ArrayList<>();
             while (rs.next()) {
                 SubClassification m = extractSubClassification(rs);
                 String mainId = rs.getString("mainId");
                 MainClassification main = new MainClassification();
                 main = mainDao.getMainClassification(mainId);
-                subSearch newSub = new subSearch(m,main);
-                
-                l.add(newSub);
+                SubSearch newSub = new SubSearch(m, main);
+
+                list.add(newSub);
             }
 
-            return l;
+            return list;
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -100,7 +103,8 @@ public class SubClassificationDao {
         }
         return null;
     }
-    public ArrayList<SubClassification> getAllSubClassifications() throws SQLException {
+
+    public ArrayList<SubSearch> getAllSubClassifications() throws SQLException {
         con = DbConnect.getConnection();
         String q = "SELECT * FROM sub_classification";
         try {
@@ -108,16 +112,21 @@ public class SubClassificationDao {
             pst = con.prepareStatement(q);
             rs = pst.executeQuery();
 
-            ArrayList<SubClassification> l = new ArrayList<>();
+            ArrayList<SubSearch> list = new ArrayList<>();
             while (rs.next()) {
                 SubClassification m = extractSubClassification(rs);
-                l.add(m);
+                String mainId = rs.getString("mainId");
+                MainClassification main = new MainClassification();
+                main = mainDao.getMainClassification(mainId);
+                SubSearch newSub = new SubSearch(m, main);
+                list.add(newSub);
             }
 
-            return l;
+            return list;
 
         } catch (SQLException e) {
-            System.out.println(e);
+            Logger.getLogger(MainClassificationDao.class.getName()).log(Level.SEVERE, null, e);
+
         }
         return null;
     }

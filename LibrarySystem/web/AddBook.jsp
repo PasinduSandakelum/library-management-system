@@ -121,7 +121,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="yearOfPrint">Year of Printed:</label>
 
-                                    <div class='input-group date' id='datepicker1' class="col-sm-5">
+                                    <div class='input-group date' id='datepicker1' class="col-sm-3">
                                         <input type='text' class="form-control" name="yearOfPrint" id="yearOfPrint" value="${yearOfPrint}"/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="lastPrintYear">Last Printed Year:</label>
-                                    <div class='input-group date' id='datepicker2' class="col-sm-5">
+                                    <div class='input-group date' id='datepicker2' class="col-sm-3">
                                         <input type='text' class="form-control" name="lastPrintYear" id="lastPrintYear" value="${lastPrintYear}"/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>

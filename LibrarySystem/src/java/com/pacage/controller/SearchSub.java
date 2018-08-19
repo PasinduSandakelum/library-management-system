@@ -7,9 +7,10 @@ package com.pacage.controller;
 
 import com.pacage.data.SubClassificationDao;
 import com.pacage.model.MainClassification;
-import com.pacage.model.subSearch;
+import com.pacage.model.SubSearch;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -35,21 +36,22 @@ public class SearchSub extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     SubClassificationDao subDao = new SubClassificationDao();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SearchSub</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SearchSub at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+
+//        String subClassification = request.getParameter("subClassification");
+//
+//        ArrayList<SubSearch> subList = new ArrayList<>();
+//
+//        try {
+//            subList = subDao.searchSubClass(subClassification);
+//            request.setAttribute("subClassifications", subList);
+//            request.getRequestDispatcher("/SearchSubClassification.jsp").forward(request, response);
+//        } catch (Exception ex) {
+//            Logger.getLogger(SearchBook.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,18 +67,27 @@ public class SearchSub extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String subClassification = request.getParameter("subClassification");
-        
-        ArrayList<subSearch> subList = new ArrayList<>();
-        
-        try {
-            subList = subDao.searchSubClass(subClassification);
-            request.setAttribute("subClassifications",subList);
-            request.getRequestDispatcher("/SearchSubClassification.jsp").forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(SearchBook.class.getName()).log(Level.SEVERE, null, ex);
+        ArrayList<SubSearch> subSearch = new ArrayList<>();
+        String type = request.getParameter("type");
+        if (type.equals("all")) {
+            try {
+                subSearch = subDao.getAllSubClassifications();
+                request.setAttribute("subClassifications", subSearch);
+                request.getRequestDispatcher("/SearchSubClassification.jsp").forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if(type.equals("search")){
+            String subClassification = request.getParameter("subClassification");
+            String selection = request.getParameter("selection");
+            try {
+                subSearch = subDao.searchSubClass(selection,subClassification);
+                request.setAttribute("subClassifications", subSearch);
+                request.getRequestDispatcher("/SearchSubClassification.jsp").forward(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(SearchBook.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
     }
 
     /**
@@ -90,7 +101,7 @@ public class SearchSub extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**

@@ -60,7 +60,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-sm-8">
                     <div class="feature">
                         <div class="container">
                             <div class="text-center">

@@ -9,16 +9,16 @@ package com.pacage.model;
  *
  * @author pasindu
  */
-public class subSearch {
+public class SubSearch {
     SubClassification sub;
     MainClassification main;
 
-    public subSearch(SubClassification sub, MainClassification main) {
+    public SubSearch(SubClassification sub, MainClassification main) {
         this.sub = sub;
         this.main = main;
     }
 
-    public subSearch() {
+    public SubSearch() {
     }
 
     public SubClassification getSub() {

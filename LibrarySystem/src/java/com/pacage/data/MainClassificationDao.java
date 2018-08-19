@@ -64,8 +64,8 @@ public class MainClassificationDao{
             pst.setString(1, mainId);
             rs = pst.executeQuery();
             if(rs.next()){
-                MainClassification main = new MainClassification(rs.getString("mainId"), rs.getString("mainClassificationName"));
-                return main;
+                MainClassification mainClass = new MainClassification(rs.getString("mainId"), rs.getString("mainClassificationName"));
+                return mainClass;
             }
         } catch (SQLException ex) {
             Logger.getLogger(MainClassificationDao.class.getName()).log(Level.SEVERE, null, ex);

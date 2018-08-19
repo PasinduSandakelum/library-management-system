@@ -33,9 +33,9 @@
         <div id="breadcrumb">
             <div class="container">	
                 <div class="breadcrumb">							
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="book.html">Books</a></li>		
-                    <li>AddBook</li>	
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="classification.jsp">Classification</a></li>		
+                    <li>Sub Classification</li>	
                 </div>		
             </div>	
         </div>
@@ -49,13 +49,23 @@
                                                     <h3 class="panel-title">Search Main Classifications</h3>
                                                 </div>-->
                         <div class="panel-body">
-                            <form id="addForm" method="get" class="form-horizontal" action="SearchSub">
+                            <form class="form-horizontal" id="addForm" action="SearchSub" method="get"  >
                                 <div class="form-group">
+                                    <div class="col-sm-3">             
+                                        <select name="selection" class="form-control" id="selection">  
+                                            <option>Select</option>        
+                                            <option value="subId">ID</option>        
+                                            <option value="subClassificationName">Name</option>             
+                                        </select>         
+                                    </div>
                                     <!--<label class="col-sm-4 control-label" for="mainClassification">Search : </label>-->
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" placeholder="Search" name="subClassification" id="subClassification">                                    </div>
                                     <div class="col-sm-2">
-                                        <button type="submit" class="btn btn-md"><span class="glyphicon glyphicon-search"></span></button>
+                                        <button type="submit" class="btn btn-md" name="type" value="search"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a href="SearchSub?type=all"><span class="btn btn-md" ><span class="glyphicon glyphicon-search"></span>View All</span></a>
                                     </div>
                                 </div>
                             </form>
@@ -79,16 +89,16 @@
                                 <thead>
                                     <tr>
                                         <th>Sub ID</th>
-                                        <th>Sub Classification Name</th>
-                                        <th>Main ID</th>
+                                        <th>Sub Classification</th>
+                                        <th>Main Classification</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${subClassifications}" var="sub">
                                         <tr>
-                                            <td>${sub.getSub().getSid}</td>
+                                            <td>${sub.getSub().getSid()}</td>
                                             <td>${sub.getSub().getSname()}</td>                                
-                                            <td>${sub.getMain().getMainId()}</td>                                
+                                            <td>${sub.getMain().getMname()}</td>                                
                                         </tr>
                                     </c:forEach>
                                 </tbody>

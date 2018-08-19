@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-    <table class="table table-striped table-responsive-md " id="bookTable">
+<!--    <table class="table table-striped table-responsive-md " id="bookTable">
                     <thead>
                         <tr>
                             <th>Book ID</th>
@@ -29,21 +29,8 @@
                     </thead>
                     <tbody>
                         
-                        <c:forEach items="${bookEdit}" var="b">
-                            <tr>
-                                <td>${b.getBook().getBookId()}</td>
-                                <td>${b.getBook().getTitle()}</td>
-                                <td>${b.getBook().getAuthor()}</td>
-                                <td>${b.getMain().getMname()}</td>
-                                <td>${b.getSub().getSname()}</td>
-                                <td>${b.getBook().getYearOfPrint()}</td>
-                                <td>${b.getBook().getLastPrintYear()}</td>
-                                <td>${b.getBook().getIsbnNo()}</td>
-                                <td>${b.getBook().getNoOfPages()}</td> 
-                            </tr>
-                        </c:forEach>
                     </tbody>
-                </table>
+                </table>-->
 <!--        <table>
             <thead>
                 <tr>
@@ -55,5 +42,7 @@
 
             </tbody>
         </table>-->
+
+
     </body>
 </html>
