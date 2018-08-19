@@ -34,51 +34,29 @@
                             <div class="menu">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="dropdown">
-                                        <a id="dLabel" role="button" class="btn btn-secondary dropdown-toggle" type="button" href="book.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Books<span class="caret"></span>
+                                    <li class="btn-group">
+                                        <a type="button" class="btn btn-primary" href="index.jsp">Home</a>
+                                    </li>
+                                    </li>
+                                    <li class="dropdown">
+                                    <li class="btn-group">
+                                        <a type="button" class="btn btn-primary" href="book.jsp">Book</a>
+                                        <a type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a tabindex="-1" href="FillMain">Add Books</a></li>
-                                            <li><a tabindex="-1" href="SearchBook.jsp">Search Books</a></li>
+                                            <li><a tabindex="-1" class="dropdown-item" href="FillMain">Add Book</a></li>
+                                            <div class="dropdown-divider"></div>
+                                            <li><a tabindex="-1" class="dropdown-item" href="SearchBook.jsp">Search Book</a></li>
+
                                         </ul>
                                     </li>
-                                    <li class="dropdown">
-                                        <div class="btn-group">
-                                            <a type="button" class="btn btn-danger" href="book.html">Home</a>
-                                        </div>
                                     </li>
                                     <li class="dropdown">
-                                        <li class="btn-group">
-                                            <a type="button" class="btn btn-danger" href="book.html">Book</a>
-                                            <a type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li><a tabindex="-1" class="dropdown-item" href="AddBook.jsp">Add Book</a></li>
-                                                <div class="dropdown-divider"></div>
-                                                <li><a tabindex="-1" class="dropdown-item" href="SearchBook.jsp">Search Book</a></li>
-
-                                            </ul>
-                                        </li>
-                                    </li>
-                                    <li class="dropdown">
-                                        <div class="btn-group">
-                                            <a type="button" class="btn btn-danger" href="book.html">Classification</a>
-                                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="caret"></span>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="AddBook.jsp">Add Book</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="SearchBook.jsp">Search Book</a>
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                    <li class="dropdown">
-                                        <a id="dLabel" role="button" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" href="classification.html" aria-haspopup="true" aria-expanded="false">
-                                            Classifications<span class="caret"></span>
+                                    <li class="btn-group">
+                                        <a type="button" class="btn btn-primary" href="classification.jsp">Classification</a>
+                                        <a type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 
@@ -98,7 +76,6 @@
                                                 </ul>
                                             </li>
                                         </ul>
-
                                     </li>
                                 </ul>
                             </div>
