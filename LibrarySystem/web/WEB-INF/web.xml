@@ -52,12 +52,24 @@
         <servlet-name>FillMain</servlet-name>
         <servlet-class>com.pacage.controller.FillMain</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteSub</servlet-name>
+        <servlet-class>com.pacage.controller.DeleteSub</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateMain</servlet-name>
+        <servlet-class>com.pacage.controller.UpdateMain</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSub</servlet-name>
+        <servlet-class>com.pacage.controller.UpdateSub</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
         <url-pattern>/BookServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>AddBook.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     <servlet-mapping>
         <servlet-name>SearchBook</servlet-name>
@@ -106,6 +118,18 @@
     <servlet-mapping>
         <servlet-name>FillMain</servlet-name>
         <url-pattern>/FillMain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteSub</servlet-name>
+        <url-pattern>/DeleteSub</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMain</servlet-name>
+        <url-pattern>/UpdateMain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSub</servlet-name>
+        <url-pattern>/UpdateSub</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

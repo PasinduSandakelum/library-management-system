@@ -45,7 +45,7 @@
                                             <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a tabindex="-1" class="dropdown-item" href="FillMain">Add Book</a></li>
+                                            <li><a tabindex="-1" class="dropdown-item" href="FillMain?page=book">Add Book</a></li>
                                             <div class="dropdown-divider"></div>
                                             <li><a tabindex="-1" class="dropdown-item" href="SearchBook.jsp">Search Book</a></li>
 
@@ -71,7 +71,7 @@
                                             <li class="dropdown-submenu">
                                                 <a class="test" tabindex="-1" href="#">Sub Classification</a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a tabindex="-1" href="AddSubClass.jsp">Add Sub</a></li>
+                                                    <li><a tabindex="-1" href="FillMain?page=sub">Add Sub</a></li>
                                                     <li><a tabindex="-1" href="SearchSubClassification.jsp">Search Sub</a></li>
                                                 </ul>
                                             </li>

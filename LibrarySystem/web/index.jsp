@@ -11,7 +11,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Company-HTML Bootstrap theme</title>
+        <title>Library Management System</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -26,37 +26,23 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <style>
-            div#blur {
-  background-color: blanchedalmond;
-  background-size: cover;
-  overflow: hidden;
-  filter: blur(13px);
-  position: absolute;
-  height: 300px;
-  top: -50px;
-  left: -50px;
-  right: -50px;
-  bottom: -50px;
-}
 
-        </style>
     </head>
     <body>
         <jsp:include page="Header.jsp"/>
         <section id="main-slider" class="no-margin">
             <div class="carousel slide">      
                 <div class="carousel-inner">
-                    <div class="item active" style="background-image: url(images/slider/bg3.jpg)">
+                    <div class="item active" style="background-image: url(images/slider/bg3.jpg); height: 530px;">
                         <div class="container">
                             <div class="row slide-margin">
                                 <div class="col-sm-6">
                                     <div class="carousel-content">
-                                        
-                                            <h2 class="animation animated-item-1">Welcome <span>Library System</span></h2>
-                                            <p class="animation animated-item-2">This is a online book library with large book stock...</p>
-                                            <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-                                        
+
+                                        <h2 class="animation animated-item-1">Welcome <span>Library System</span></h2>
+                                        <p class="animation animated-item-2">This is a online book library with large book stock...</p>
+                                        <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+
 
                                     </div>
                                 </div>

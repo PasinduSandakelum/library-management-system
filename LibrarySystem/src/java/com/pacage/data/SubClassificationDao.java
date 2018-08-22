@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import com.pacage.model.SubClassification;
 import com.pacage.model.SubSearch;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,29 +53,93 @@ public class SubClassificationDao {
         return false;
     }
 
-    public ArrayList<SubSearch> searchSubClass(String selection, String val) throws SQLException {
+    public ArrayList<ArrayList<String>> searchSubClass(String selection, String val) throws SQLException {
         con = DbConnect.getConnection();
-        String q = "SELECT * FROM sub_classification WHERE "+selection+"=?";
+        String q = "SELECT * FROM sub_classification WHERE " + selection + "=?";
+        String q1 = "SELECT * FROM main_classification WHERE mainId=?";
+//        String q1 = "SELECT * FROM sub_classification WHERE mname=?";
         try {
+
             pst = con.prepareStatement(q);
             pst.setString(1, val);
             rs = pst.executeQuery();
+            ArrayList<ArrayList<String>> sub = new ArrayList<>();
 
-            ArrayList<SubSearch> list = new ArrayList<>();
             while (rs.next()) {
-                SubClassification m = extractSubClassification(rs);
+                ArrayList<String> temp = new ArrayList<>();
                 String mainId = rs.getString("mainId");
-                MainClassification main = new MainClassification();
-                main = mainDao.getMainClassification(mainId);
-                SubSearch newSub = new SubSearch(m, main);
+                String subId = rs.getString("subId");
+                String subClassificationName = rs.getString("subClassificationName");
+                temp.add(subId);
+                temp.add(subClassificationName);
+                try {
+                    Connection con1 = DbConnect.getConnection();
+                    PreparedStatement pst1 = con1.prepareStatement(q1);
+                    pst1.setString(1, mainId);
+                    ResultSet rs1 = pst1.executeQuery();
+                    if (rs1.next()) {
+                        String mainClassificationName = rs1.getString("mainClassificationName");
+                        temp.add(mainClassificationName);
+                        temp.add(mainId);
+                    }
 
-                list.add(newSub);
+                    sub.add(temp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
 
-            return list;
+            return sub;
 
         } catch (SQLException e) {
-            System.out.println(e);
+//            System.out.println(e);
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<ArrayList<String>> getAllSubClass() throws SQLException {
+        con = DbConnect.getConnection();
+        String q = "SELECT * FROM sub_classification";
+        String q1 = "SELECT * FROM main_classification WHERE mainId=?";
+//        String q1 = "SELECT * FROM sub_classification WHERE mname=?";
+        try {
+
+            pst = con.prepareStatement(q);
+            rs = pst.executeQuery();
+            ArrayList<ArrayList<String>> sub = new ArrayList<>();
+
+            while (rs.next()) {
+                ArrayList<String> temp = new ArrayList<>();
+                String mainId = rs.getString("mainId");
+                String subId = rs.getString("subId");
+                String subClassificationName = rs.getString("subClassificationName");
+                temp.add(subId);
+                temp.add(subClassificationName);
+                try {
+                    Connection con1 = DbConnect.getConnection();
+                    PreparedStatement pst1 = con1.prepareStatement(q1);
+                    pst1.setString(1, mainId);
+                    ResultSet rs1 = pst1.executeQuery();
+                    if (rs1.next()) {
+                        String mainClassificationName = rs1.getString("mainClassificationName");
+                        temp.add(mainClassificationName);
+                        temp.add(mainId);
+                    }
+
+                    sub.add(temp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            return sub;
+
+        } catch (SQLException e) {
+//            System.out.println(e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -114,79 +179,38 @@ public class SubClassificationDao {
 
             ArrayList<SubSearch> list = new ArrayList<>();
             while (rs.next()) {
-                SubClassification m = extractSubClassification(rs);
+                SubClassification sub = extractSubClassification(rs);
                 String mainId = rs.getString("mainId");
-                MainClassification main = new MainClassification();
-                main = mainDao.getMainClassification(mainId);
-                SubSearch newSub = new SubSearch(m, main);
-                list.add(newSub);
+                MainClassification mn = mainDao.getMainClassification(mainId);
+                SubSearch subClassifications = new SubSearch(sub, mn);
+                list.add(subClassifications);
             }
 
             return list;
 
         } catch (SQLException e) {
+            e.printStackTrace();
             Logger.getLogger(MainClassificationDao.class.getName()).log(Level.SEVERE, null, e);
 
         }
         return null;
     }
 
-    public boolean addSubClassification(String mcl, String sid, String scl) throws SQLException {
+    public boolean addSubClassification(String mid, String sid, String scl) throws SQLException {
         con = DbConnect.getConnection();
         String q = "INSERT INTO sub_classification VALUES (?,?,?)";
-        String q1 = "SELECT * FROM main_classification WHERE mainClassificationName=?";
-        try {
-            pst = con.prepareStatement(q1);
-
-            pst.setString(1, mcl);
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                String mid = rs.getString("mainId");
-
-                pst = con.prepareStatement(q);
-
-                pst.setString(1, sid);
-                pst.setString(2, scl);
-                pst.setString(3, mcl);
-
-                int i = pst.executeUpdate();
-                if (i == 1) {
-                    return true;
-                }
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return false;
-    }
-
-    public boolean editSubClassification(String mcl, String sid, String scl) throws SQLException {
-        con = DbConnect.getConnection();
-        String q = "UPDATE sub_classification SET  mainId=?, subClassificationName=? WHERE  subId=? ";
-        String q1 = "SELECT * FROM main_classification WHERE mname=?";
 
         try {
-            pst = con.prepareStatement(q1);
 
-            pst.setString(1, mcl);
-            rs = pst.executeQuery();
+            pst = con.prepareStatement(q);
 
-            if (rs.next()) {
-                String mid = rs.getString("mainId");
+            pst.setString(1, sid);
+            pst.setString(2, scl);
+            pst.setString(3, mid);
 
-                pst = con.prepareStatement(q);
-
-                pst.setString(1, mid);
-                pst.setString(2, scl);
-                pst.setString(3, sid);
-
-                int i = pst.executeUpdate();
-
-                if (i == 1) {
-                    return true;
-                }
+            int i = pst.executeUpdate();
+            if (i == 1) {
+                return true;
             }
 
         } catch (SQLException e) {
@@ -195,9 +219,33 @@ public class SubClassificationDao {
         return false;
     }
 
-    public boolean deleteSubClassification(String sid, String scl) throws SQLException {
+    public boolean editSubClassification(String mainId, String subId, String subName) throws SQLException {
         con = DbConnect.getConnection();
-        String q = "DELETE FROM sclass WHERE subId=?";
+        String q = "UPDATE sub_classification SET  mainId=?, subClassificationName=? WHERE  subId=? ";
+
+        try {
+            pst = con.prepareStatement(q);
+
+            pst.setString(1, mainId);
+            pst.setString(2, subName);
+            pst.setString(3, subId);
+
+            int i = pst.executeUpdate();
+
+            if (i == 1) {
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteSubClassification(String sid) throws SQLException {
+        con = DbConnect.getConnection();
+        String q = "DELETE FROM sub_classification WHERE subId=?";
         String q1 = "SELECT * FROM book_sub WHERE subId=?";
 
         try {

@@ -36,6 +36,7 @@ public class ChangeSub extends HttpServlet {
      */
     MainClassificationDao mainDao = new MainClassificationDao();
     SubClassificationDao subDao = new SubClassificationDao();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String bookId = request.getParameter("bookId");
@@ -47,23 +48,42 @@ public class ChangeSub extends HttpServlet {
         String noOfPages = request.getParameter("noOfPages");
         String mainId = request.getParameter("mainId");
         try {
-            ArrayList<MainClassification> mainList = new ArrayList<>();
-            mainList = mainDao.getAllMainClassifications();
-            ArrayList<SubClassification> subList = new ArrayList<>();
-            subList = subDao.getAllSubClassOfMainClass(mainId);
-            request.setAttribute("mainClassifications", mainList);
-            request.setAttribute("subClassifications", subList);
-            request.setAttribute("bookId", bookId);
-            request.setAttribute("title", title);
-            request.setAttribute("author", author);
-            request.setAttribute("yearOfPrint", yearOfPrint);
-            request.setAttribute("lastPrintYear", lastPrintYear);
-            request.setAttribute("isbnNo", isbnNo);
-            request.setAttribute("noOfPages", noOfPages);
-            request.setAttribute("mainId", mainId);
+
 //            request.setAttribute("mainName", request.getParameter("mainClassification"));
-            
-            request.getRequestDispatcher("/AddBook.jsp").forward(request, response);
+            if (request.getParameter("type").equals("add")) {
+                ArrayList<MainClassification> mainList = new ArrayList<>();
+                mainList = mainDao.getAllMainClassifications();
+                ArrayList<SubClassification> subList = new ArrayList<>();
+                subList = subDao.getAllSubClassOfMainClass(mainId);
+                request.setAttribute("mainClassifications", mainList);
+                request.setAttribute("subClassifications", subList);
+                request.setAttribute("bookId", bookId);
+                request.setAttribute("title", title);
+                request.setAttribute("author", author);
+                request.setAttribute("yearOfPrint", yearOfPrint);
+                request.setAttribute("lastPrintYear", lastPrintYear);
+                request.setAttribute("isbnNo", isbnNo);
+                request.setAttribute("noOfPages", noOfPages);
+                request.setAttribute("mainId", mainId);
+                request.getRequestDispatcher("/AddBook.jsp").forward(request, response);
+            } else if (request.getParameter("type").equals("update")) {
+                ArrayList<MainClassification> mainList = new ArrayList<>();
+                mainList = mainDao.getAllMainClassifications();
+                ArrayList<SubClassification> subList = new ArrayList<>();
+                subList = subDao.getAllSubClassOfMainClass(mainId);
+                request.setAttribute("mainClassifications", mainList);
+                request.setAttribute("subClassifications", subList);
+                request.setAttribute("bookIdEdit", bookId);
+                request.setAttribute("titleEdit", title);
+                request.setAttribute("authorEdit", author);
+                request.setAttribute("yearOfPrintEdit", yearOfPrint);
+                request.setAttribute("lastPrintYearEdit", lastPrintYear);
+                request.setAttribute("isbnNoEdit", isbnNo);
+                request.setAttribute("noOfPagesEdit", noOfPages);
+                request.setAttribute("mainId", mainId);
+                request.getRequestDispatcher("/EditBook.jsp").forward(request, response);
+            }
+
         } catch (Exception e) {
             Logger.getLogger(BookServlet.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -82,7 +102,7 @@ public class ChangeSub extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**
@@ -97,7 +117,7 @@ public class ChangeSub extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**

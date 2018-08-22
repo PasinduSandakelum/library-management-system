@@ -48,13 +48,13 @@
     <body>
 
         <jsp:include page="Header.jsp"/>
-
+       
         <div id="breadcrumb">
             <div class="container">	
                 <div class="breadcrumb">							
                     <li><a href="index.html">Home</a></li>
                     <li><a href="book.html">Books</a></li>		
-                    <li>AddBook</li>	
+                    <li>Add Book</li>	
                 </div>		
             </div>	
         </div>
@@ -62,10 +62,15 @@
         <div class="container" style="color: #33334d">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
+                    ${error}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Add Books</h3>
+                            <h3 class="panel-title">Book details</h3>
                         </div>
                         <div class="panel-body">
                             <form id="addForm" method="get" class="form-horizontal" action="BookServlet">
@@ -73,29 +78,29 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="bookId">Book ID : </label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter book ID" name="bookId" id="bookId" value="${bookId}">
+                                        <input type="text" class="form-control" placeholder="Enter book ID" name="bookId" id="bookId" value="${bookId}" required>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="title">Title:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter book title" id="title" name="title" value="${title}">
+                                        <input type="text" class="form-control" placeholder="Enter book title" id="title" name="title" value="${title}" required>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="author">Author:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter book author" name="author" id="author" value="${author}">
+                                        <input type="text" class="form-control" placeholder="Enter book author" name="author" id="author" value="${author}" required>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="mainId">Main Classification:</label>
                                     <div class="col-sm-5">             
-                                        <select name="mainId" class="form-control" id="mainId" onchange="changeSub(this.form);" value="${mainId}">  
-                                            <option value="0">Select</option>  
+                                        <select name="mainId" class="form-control" id="mainId" onchange="changeSub(this.form);" value="${mainId}" required>  
+                                            <option value="">Select</option>  
                                             <!--<option>Engineering</option>-->  
                                             <c:forEach var="item" items="${mainClassifications}">
                                                 <option value="${item.getMid()}" <c:if test="${item.getMid() eq mainId}" >Selected="true"</c:if>>${item.getMname()}</option>
@@ -109,8 +114,8 @@
                                     <label class="col-sm-4 control-label" for="subClassificationId">Sub Classification:</label>
                                     <div class="col-sm-5"> 
 
-                                        <select name="subClassificationId" class="form-control" id="subClassificationId">  
-                                            <option>Select</option>
+                                        <select name="subClassificationId" class="form-control" id="subClassificationId" required>  
+                                            <option value="">Select</option>
                                             <c:forEach var="item" items="${subClassifications}">
                                                 <option value="${item.getSid()}"> ${item.getSname()}</option>
                                             </c:forEach>
@@ -122,7 +127,7 @@
                                     <label class="col-sm-4 control-label" for="yearOfPrint">Year of Printed:</label>
 
                                     <div class='input-group date' id='datepicker1' class="col-sm-3">
-                                        <input type='text' class="form-control" name="yearOfPrint" id="yearOfPrint" value="${yearOfPrint}"/>
+                                        <input type='text' class="form-control" name="yearOfPrint" id="yearOfPrint" value="${yearOfPrint}" required/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -131,7 +136,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="lastPrintYear">Last Printed Year:</label>
                                     <div class='input-group date' id='datepicker2' class="col-sm-3">
-                                        <input type='text' class="form-control" name="lastPrintYear" id="lastPrintYear" value="${lastPrintYear}"/>
+                                        <input type='text' class="form-control" name="lastPrintYear" id="lastPrintYear" value="${lastPrintYear}" required/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -141,14 +146,14 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="isbnNo">ISBN No:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter ISBN number" name="isbnNo" id="isbnNo" value="${isbnNo}"/>
+                                        <input type="text" class="form-control" placeholder="Enter ISBN number" name="isbnNo" id="isbnNo" value="${isbnNo}" required/>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="noOfPages">No of Pages:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter number of pages" name="noOfPages" id="noOfPages" value="${noOfPages}"/>
+                                        <input type="text" class="form-control" placeholder="Enter number of pages" name="noOfPages" id="noOfPages" value="${noOfPages}" min="0" pattern="[0-9]+" title="Enter + Numbers Only" required/>
                                     </div>
 
                                 </div>
@@ -158,11 +163,7 @@
                                         <button type="submit" class="btn btn-primary" name="Add" value="Add">Add</button>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-6 col-sm-offset-4">
-                                        ${error} 
-                                    </div>
-                                </div>
+                                    <input type="hidden" name="type" value="add"/>
                             </form>
 
                         </div>
@@ -206,6 +207,5 @@
                                                 });
                                             });
         </script>
-        <jsp:include page="Footer.jsp"/>
     </body>
 </html>

@@ -6,7 +6,11 @@
 package com.pacage.controller;
 
 import com.pacage.data.BookDao;
+import com.pacage.data.MainClassificationDao;
+import com.pacage.data.SubClassificationDao;
 import com.pacage.model.BookSearch;
+import com.pacage.model.MainClassification;
+import com.pacage.model.SubClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -34,6 +38,8 @@ public class Edit extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     BookDao bookDao = new BookDao();
+    MainClassificationDao mainDao = new MainClassificationDao();
+    SubClassificationDao subDao = new SubClassificationDao();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,9 +76,23 @@ public class Edit extends HttpServlet {
         if (type.equals("edit")) {
             String bookId = request.getParameter("bookId");
             try {
-                ArrayList<BookSearch> editBook = bookDao.getBookByOneField("bookId", bookId);
-
-                request.setAttribute("bookEdit", editBook);
+                ArrayList<BookSearch> editBookList = bookDao.getBookByOneField("bookId", bookId);
+                BookSearch editBook = editBookList.get(0);
+                ArrayList<MainClassification> mainList = mainDao.getAllMainClassifications();
+                ArrayList<SubClassification> subList = new ArrayList<>();
+                subList = subDao.getAllSubClassOfMainClass(editBook.getMain().getMid());
+                
+                request.setAttribute("mainClassifications", mainList);
+                request.setAttribute("subClassifications", subList);
+                request.setAttribute("bookIdEdit", editBook.getBook().getBookId());
+                request.setAttribute("titleEdit", editBook.getBook().getTitle());
+                request.setAttribute("authorEdit", editBook.getBook().getAuthor());
+                request.setAttribute("mainId", editBook.getMain().getMid());
+                request.setAttribute("subId", editBook.getSub().getSid());
+                request.setAttribute("yearOfPrintEdit", editBook.getBook().getYearOfPrint());
+                request.setAttribute("lastPrintYearEdit", editBook.getBook().getLastPrintYear());
+                request.setAttribute("isbnNoEdit", editBook.getBook().getIsbnNo());
+                request.setAttribute("noOfPagesEdit", editBook.getBook().getNoOfPages());
                 request.getRequestDispatcher("/EditBook.jsp").forward(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);

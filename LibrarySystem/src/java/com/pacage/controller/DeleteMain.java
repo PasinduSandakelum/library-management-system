@@ -79,7 +79,12 @@ public class DeleteMain extends HttpServlet {
                 }
             }
             else{
-                request.setAttribute("error","<div class=\"alert alert-warning\"> There are sub classificatons for this, Please delete them first !</div>");
+                request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-warning alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Not allow,</strong>Sub classifications are available under this main classification !\n"
+                        + "            </div>\n"
+                        + "        </div>");
                 request.getRequestDispatcher("/SearchMainClassification.jsp").forward(request, response);
             }
         } catch (SQLException ex) {

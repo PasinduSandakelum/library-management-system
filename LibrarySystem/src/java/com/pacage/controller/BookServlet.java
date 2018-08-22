@@ -83,10 +83,20 @@ public class BookServlet extends HttpServlet {
         try {
             boolean b = bookDao.saveBook(book, subId);
             if (b) {
-                request.setAttribute("error", "<div class=\"alert alert-success\"> Successfully added !</div>");
+                request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-success alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Success,</strong>Book Added ! <a href=\"SearchBook?type=all\"><span class=\"btn btn-md\" ><span class=\"glyphicon glyphicon-search\"></span>View All</span></a>\n"
+                        + "            </div>\n"
+                        + "        </div>");
                 request.getRequestDispatcher("/AddBook.jsp").forward(request, response);
             } else {
-                request.setAttribute("error", "<div class=\"alert alert-warning\"> Book ID is alredy taken !</div>");
+                request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-warning alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Warning,</strong>Book ID already exists !\n"
+                        + "            </div>\n"
+                        + "        </div>");
                 request.getRequestDispatcher("/AddBook.jsp").forward(request, response);
             }
                 

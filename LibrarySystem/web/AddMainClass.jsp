@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Add Main Classifications</title>
+        <title>Add Main Classification</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -40,9 +40,10 @@
         <div id="breadcrumb">
             <div class="container">	
                 <div class="breadcrumb">							
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="book.html">Books</a></li>		
-                    <li>AddBook</li>	
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="classification.jsp">Classification</a></li>		
+                    <li><a href="MainClassification.jsp">Main Classification</a></li>	
+                    <li>Add Main Classification</li>	
                 </div>		
             </div>	
         </div>
@@ -50,44 +51,48 @@
         <div class="container" style="color: #33334d">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
+                    ${error}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Add Main Classifications</h3>
+                            <h3 class="panel-title">Main Classification Details</h3>
                         </div>
                         <div class="panel-body">
-                            <form id="addForm" method="get" class="form-horizontal" action="AddMain">
+                            <form id="addMainForm" method="get" class="form-horizontal" action="AddMain">
 
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="mainId">Main ID :</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter Main Classification ID" name="mainId" id="mainId">
+                                        <input type="text" class="form-control" placeholder="Enter Main Classification ID" name="mainId" id="mainId" required>
+                                        <div class="valid-feedback">
+                                            <p id="txt"></p>
+                                        </div>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="mainClassificaton">Main Classification :</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter Main Classification Name" id="mainClassificaton" name="mainClassification">
+                                        <input type="text" class="form-control" placeholder="Enter Main Classification Name" id="mainClassificaton" name="mainClassification" required>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-9 col-sm-offset-4">
-                                        <button type="submit" class="btn btn-primary" name="Add" value="Add">Add</button>
+                                        <button onclick="valid()" type="submit" class="btn btn-primary" name="Add" value="Add">Add</button>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-6 col-sm-offset-4">
-                                        ${error} 
-                                    </div>
-                                </div>
+
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <jsp:include page="Footer.jsp"/>
+        
     </body>
 </html>

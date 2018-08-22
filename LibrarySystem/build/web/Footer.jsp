@@ -11,9 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <footer>
-		<div class="footer">
-			<div class="container">
+        <footer >
+            <div class="footer">
+			<div class="container" >
 				<div class="social-icon">
 					<div class="col-md-4">
 						<ul class="social-network">
@@ -28,7 +28,7 @@
 				
 				<div class="col-md-4 col-md-offset-4">
 					<div class="copyright">
-						&trade; 2018  <a target="_blank" href="index.jsp" title="Library System Using Bootstrap"> Library System</a>. All Rights Reserved.
+                                            <h3>Libraray Management System</h3>
 					</div>
 				</div>						
 			</div>

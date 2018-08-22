@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Company-HTML Bootstrap theme</title>
+        <title>Search Main Classification</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -27,6 +27,11 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/validator.js"></script>
+        <script src="js/validator.min.js"></script>
     </head>
     <body>
         <jsp:include page="Header.jsp"/>
@@ -34,14 +39,20 @@
         <div id="breadcrumb">
             <div class="container">	
                 <div class="breadcrumb">							
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="book.html">Books</a></li>		
-                    <li>AddBook</li>	
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="classification.jsp">Classification</a></li>		
+                    <li><a href="MainClassification.jsp">Main Classification</a></li>	
+                    <li>Search Main Classification</li>		
                 </div>		
             </div>	
         </div>
 
         <div class="container" style="color: #33334d">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    ${error}
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-2">
 
@@ -72,11 +83,6 @@
                                     </div>
                                 </div>
                             </form>
-                            <div class="form-group">
-                                <div class="col-sm-6 col-sm-offset-4">
-                                    ${error} 
-                                </div>
-                            </div>
 
                         </div>
                     </div>
@@ -105,9 +111,9 @@
                                             <td>${b.getMid()}</td>
                                             <td>${b.getMname()}</td>  
                                             <td>
-                                                <a href=""><span class="glyphicon glyphicon-pencil"></span></a>                                    
+                                                <a href="UpdateMain?type=fill&mainId=${b.getMid()}&mainName=${b.getMname()}" onclick="return confirm('Do you really want to update this ?');"><span class="glyphicon glyphicon-pencil"></span></a>                                    
                                                 &nbsp;
-                                                <a href="DeleteMain?mainId=${b.getMid()}"><span class="glyphicon glyphicon-trash"></span></a>
+                                                <a href="DeleteMain?mainId=${b.getMid()}" onclick="return confirm('Do you really want to delete this ?');"><span class="glyphicon glyphicon-trash"></span></a>
 
                                             </td>
                                         </tr>
@@ -120,6 +126,6 @@
                 </div>
             </div>
         </div>
-    <jsp:include page="Footer.jsp"/>
+    
     </body>
 </html>

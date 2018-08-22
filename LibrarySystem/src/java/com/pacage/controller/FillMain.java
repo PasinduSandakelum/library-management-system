@@ -36,15 +36,28 @@ public class FillMain extends HttpServlet {
      */
     MainClassificationDao mainDao = new MainClassificationDao();
     SubClassificationDao subDao = new SubClassificationDao();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            ArrayList<MainClassification> mainList = mainDao.getAllMainClassifications();
-            request.setAttribute("mainClassifications", mainList);
-            request.getRequestDispatcher("/AddBook.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(FillMain.class.getName()).log(Level.SEVERE, null, ex);
+        if (request.getParameter("page").equals("sub")) {
+            try {
+                ArrayList<MainClassification> mainList = mainDao.getAllMainClassifications();
+                request.setAttribute("mainClassifications", mainList);
+                request.getRequestDispatcher("/AddSubClass.jsp").forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(FillMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (request.getParameter("page").equals("book")) {
+            try {
+                ArrayList<MainClassification> mainList = mainDao.getAllMainClassifications();
+                request.setAttribute("mainClassifications", mainList);
+                request.getRequestDispatcher("/AddBook.jsp").forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(FillMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

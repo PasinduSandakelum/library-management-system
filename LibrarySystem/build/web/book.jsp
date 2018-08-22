@@ -11,7 +11,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Company-HTML Bootstrap theme</title>
+        <title>Books</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
         <div id="breadcrumb">
             <div class="container">	
                 <div class="breadcrumb">							
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.jsp">Home</a></li>
                     <li>Books</li>			
                 </div>		
             </div>	
@@ -41,7 +41,7 @@
         <section id="main-slider" class="no-margin">
             <div class="carousel slide">      
                 <div class="carousel-inner">
-                    <div class="item active" style="background-image: url(images/slider/img2.jpg)">
+                    <div class="item active" style="background-image: url(images/slider/img2.jpg); height: 500px;">
                         <div class="container">
                             <div class="row slide-margin">
                                 <div class="col-sm-6">
@@ -60,31 +60,38 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-8 col-sm-offset-1">
                     <div class="feature">
                         <div class="container">
                             <div class="text-center">
-                                <div class="col-md-3">
-                                    <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" >
-                                        <i class="fa fa-plus-circle"></i>	
-                                        <h2>Add books</h2>
-                                        <p>Add book details here.</p>
+                                <a href="FillMain?page=book">
+                                    <div class="col-md-3">
+                                        <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" >
+                                            <i class="fa fa-plus-circle"></i>	
+                                            <h2>Add books</h2>
+                                            <p>Add book details here.</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" >
-                                        <i class="fa fa-location-arrow"></i>	
-                                        <h2>Search books</h2>
-                                        <p>Search, edit or delete any book here.</p>
+                                </a>
+                                <a href="SearchBook.jsp">
+                                    <div class="col-md-3">
+                                        <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" >
+                                            <i class="fa fa-location-arrow"></i>	
+                                            <h2>Search books</h2>
+                                            <p>Search, edit or delete any book here.</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms" >
-                                        <i class="fa fa-list-ol"></i>	
-                                        <h2>View books</h2>
-                                        <p>View all books and details here.</p>
+                                </a>
+                                <a>
+                                    <div class="col-md-3">
+                                        <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms" >
+                                            <i class="fa fa-list-ol"></i>	
+                                            <h2>View books</h2>
+                                            <p>View all books and details here.</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
+
                             </div>
                         </div>
                     </div>

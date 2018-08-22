@@ -24,7 +24,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author pasindu
  */
 public class SearchBook extends HttpServlet {
+
     BookDao bookDao = new BookDao();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,7 +44,7 @@ public class SearchBook extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchBook</title>");            
+            out.println("<title>Servlet SearchBook</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SearchBook at " + request.getContextPath() + "</h1>");
@@ -64,29 +66,34 @@ public class SearchBook extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String selection = request.getParameter("selection");
-        String sname = request.getParameter("sname");
-//        BookSearch bookSearch = new BookSearch();
         ArrayList<BookSearch> bookSearch = new ArrayList<>();
-        
-        try {
-            if (selection.equals("mainClassification")) {
-                bookSearch = bookDao.getBookByMainClassification(sname);
-            } else if (selection.equals("subClassification")) {
-                bookSearch = bookDao.getBookBySubClassification(sname);
-            } else {
-                bookSearch = bookDao.getBookByOneField(selection, sname);
+        if (request.getParameter("type").equals("search")) {
+            String selection = request.getParameter("selection");
+            String sname = request.getParameter("sname");
+//        BookSearch bookSearch = new BookSearch();
+            try {
+                if (selection.equals("mainClassification")) {
+                    bookSearch = bookDao.getBookByMainClassification(sname);
+                } else if (selection.equals("subClassification")) {
+                    bookSearch = bookDao.getBookBySubClassification(sname);
+                } else {
+                    bookSearch = bookDao.getBookByOneField(selection, sname);
+                }
+                request.setAttribute("books", bookSearch);
+                request.getRequestDispatcher("/SearchBook.jsp").forward(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(SearchBook.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-//            ArrayList<Book> book = new ArrayList<>();
-//            for (BookSearch bookSearch1 : bookSearch) {
-//                book.add(bookSearch1.getBook());
-//            }
-            request.setAttribute("books",bookSearch);
-            request.getRequestDispatcher("/SearchBook.jsp").forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(SearchBook.class.getName()).log(Level.SEVERE, null, ex);
+        } else if (request.getParameter("type").equals("all")) {
+            try {
+                bookSearch = bookDao.getAllBooks();
+                request.setAttribute("books", bookSearch);
+                request.getRequestDispatcher("/SearchBook.jsp").forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchBook.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
     }
 
     /**

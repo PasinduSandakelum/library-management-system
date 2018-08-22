@@ -265,11 +265,11 @@ public class BookDao {
 
             pst.setString(1, book.getTitle());
             pst.setString(2, book.getAuthor());
-            pst.setString(5, book.getYearOfPrint());
-            pst.setString(6, book.getLastPrintYear());
-            pst.setString(7, book.getIsbnNo());
-            pst.setInt(8, book.getNoOfPages());
-            pst.setString(9, book.getBookId());
+            pst.setString(3, book.getYearOfPrint());
+            pst.setString(4, book.getLastPrintYear());
+            pst.setString(5, book.getIsbnNo());
+            pst.setInt(6, book.getNoOfPages());
+            pst.setString(7, book.getBookId());
 
             int i = pst.executeUpdate();
 

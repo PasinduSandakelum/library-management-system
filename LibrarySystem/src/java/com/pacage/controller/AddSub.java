@@ -65,19 +65,29 @@ public class AddSub extends HttpServlet {
 //        processRequest(request, response);
         String subId = request.getParameter("subId");
         String subClassification = request.getParameter("subClassification");
-        String mainClassification = request.getParameter("mainClassification");
+        String mainId = request.getParameter("mainId");
         
         
 
         PrintWriter out = response.getWriter();
         try {
-            boolean b = subDao.addSubClassification(mainClassification,subId, subClassification);
+            boolean b = subDao.addSubClassification(mainId,subId, subClassification);
             if (b) {
-                request.setAttribute("error", "<div class=\"alert alert-success\"> Successfully added !</div>");
-                request.getRequestDispatcher("/AddMainClass.jsp").forward(request, response);
+                request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-success alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Success,</strong>Sub classification added ! <a href=\"SearchSub?type=all\"><span class=\"btn btn-md\" ><span class=\"glyphicon glyphicon-search\"></span>View All</span></a>\n"
+                        + "            </div>\n"
+                        + "        </div>");
+                request.getRequestDispatcher("/AddSubClass.jsp").forward(request, response);
             } else {
-                request.setAttribute("error", "<div class=\"alert alert-warning\"> Sub ID is alredy taken !</div>");
-                request.getRequestDispatcher("/AddMainClass.jsp").forward(request, response);
+                request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-success alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Problem,</strong>On adding ! \n"
+                        + "            </div>\n"
+                        + "        </div>");
+                request.getRequestDispatcher("/AddSubClass.jsp").forward(request, response);
             }
 
             //out.println("Success");

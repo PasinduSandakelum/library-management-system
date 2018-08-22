@@ -7,6 +7,7 @@ package com.pacage.controller;
 
 import com.pacage.data.SubClassificationDao;
 import com.pacage.model.MainClassification;
+import com.pacage.model.SubClassification;
 import com.pacage.model.SubSearch;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -67,11 +68,11 @@ public class SearchSub extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        ArrayList<SubSearch> subSearch = new ArrayList<>();
+        ArrayList<ArrayList<String>> subSearch = new ArrayList<>();
         String type = request.getParameter("type");
         if (type.equals("all")) {
             try {
-                subSearch = subDao.getAllSubClassifications();
+                subSearch = subDao.getAllSubClass();
                 request.setAttribute("subClassifications", subSearch);
                 request.getRequestDispatcher("/SearchSubClassification.jsp").forward(request, response);
             } catch (SQLException ex) {

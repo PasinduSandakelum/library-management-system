@@ -99,13 +99,13 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Header.jsp", out, false);
       out.write("\r\n");
-      out.write("\r\n");
+      out.write("       \r\n");
       out.write("        <div id=\"breadcrumb\">\r\n");
       out.write("            <div class=\"container\">\t\r\n");
       out.write("                <div class=\"breadcrumb\">\t\t\t\t\t\t\t\r\n");
       out.write("                    <li><a href=\"index.html\">Home</a></li>\r\n");
       out.write("                    <li><a href=\"book.html\">Books</a></li>\t\t\r\n");
-      out.write("                    <li>AddBook</li>\t\r\n");
+      out.write("                    <li>Add Book</li>\t\r\n");
       out.write("                </div>\t\t\r\n");
       out.write("            </div>\t\r\n");
       out.write("        </div>\r\n");
@@ -113,10 +113,17 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"container\" style=\"color: #33334d\">\r\n");
       out.write("            <div class=\"row\">\r\n");
       out.write("                <div class=\"col-sm-8 col-sm-offset-2\">\r\n");
+      out.write("                    ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${error}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </div>\r\n");
+      out.write("            <div class=\"row\">\r\n");
+      out.write("                <div class=\"col-sm-8 col-sm-offset-2\">\r\n");
       out.write("\r\n");
       out.write("                    <div class=\"panel panel-default\">\r\n");
       out.write("                        <div class=\"panel-heading\">\r\n");
-      out.write("                            <h3 class=\"panel-title\">Add Books</h3>\r\n");
+      out.write("                            <h3 class=\"panel-title\">Book details</h3>\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <div class=\"panel-body\">\r\n");
       out.write("                            <form id=\"addForm\" method=\"get\" class=\"form-horizontal\" action=\"BookServlet\">\r\n");
@@ -126,7 +133,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <div class=\"col-sm-5\">\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter book ID\" name=\"bookId\" id=\"bookId\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${bookId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">\r\n");
+      out.write("\" required>\r\n");
       out.write("                                    </div>\r\n");
       out.write("\r\n");
       out.write("                                </div>\r\n");
@@ -135,7 +142,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <div class=\"col-sm-5\">\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter book title\" id=\"title\" name=\"title\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${title}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">\r\n");
+      out.write("\" required>\r\n");
       out.write("                                    </div>\r\n");
       out.write("\r\n");
       out.write("                                </div>\r\n");
@@ -144,7 +151,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <div class=\"col-sm-5\">\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter book author\" name=\"author\" id=\"author\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${author}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">\r\n");
+      out.write("\" required>\r\n");
       out.write("                                    </div>\r\n");
       out.write("\r\n");
       out.write("                                </div>\r\n");
@@ -153,8 +160,8 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <div class=\"col-sm-5\">             \r\n");
       out.write("                                        <select name=\"mainId\" class=\"form-control\" id=\"mainId\" onchange=\"changeSub(this.form);\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mainId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">  \r\n");
-      out.write("                                            <option value=\"0\">Select</option>  \r\n");
+      out.write("\" required>  \r\n");
+      out.write("                                            <option value=\"\">Select</option>  \r\n");
       out.write("                                            <!--<option>Engineering</option>-->  \r\n");
       out.write("                                            ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
@@ -169,8 +176,8 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <label class=\"col-sm-4 control-label\" for=\"subClassificationId\">Sub Classification:</label>\r\n");
       out.write("                                    <div class=\"col-sm-5\"> \r\n");
       out.write("\r\n");
-      out.write("                                        <select name=\"subClassificationId\" class=\"form-control\" id=\"subClassificationId\">  \r\n");
-      out.write("                                            <option>Select</option>\r\n");
+      out.write("                                        <select name=\"subClassificationId\" class=\"form-control\" id=\"subClassificationId\" required>  \r\n");
+      out.write("                                            <option value=\"\">Select</option>\r\n");
       out.write("                                            ");
       if (_jspx_meth_c_forEach_1(_jspx_page_context))
         return;
@@ -185,7 +192,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <div class='input-group date' id='datepicker1' class=\"col-sm-3\">\r\n");
       out.write("                                        <input type='text' class=\"form-control\" name=\"yearOfPrint\" id=\"yearOfPrint\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${yearOfPrint}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/>\r\n");
+      out.write("\" required/>\r\n");
       out.write("                                        <span class=\"input-group-addon\">\r\n");
       out.write("                                            <span class=\"glyphicon glyphicon-calendar\"></span>\r\n");
       out.write("                                        </span>\r\n");
@@ -196,7 +203,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <div class='input-group date' id='datepicker2' class=\"col-sm-3\">\r\n");
       out.write("                                        <input type='text' class=\"form-control\" name=\"lastPrintYear\" id=\"lastPrintYear\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${lastPrintYear}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/>\r\n");
+      out.write("\" required/>\r\n");
       out.write("                                        <span class=\"input-group-addon\">\r\n");
       out.write("                                            <span class=\"glyphicon glyphicon-calendar\"></span>\r\n");
       out.write("                                        </span>\r\n");
@@ -208,7 +215,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <div class=\"col-sm-5\">\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter ISBN number\" name=\"isbnNo\" id=\"isbnNo\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${isbnNo}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/>\r\n");
+      out.write("\" required/>\r\n");
       out.write("                                    </div>\r\n");
       out.write("\r\n");
       out.write("                                </div>\r\n");
@@ -217,7 +224,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <div class=\"col-sm-5\">\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter number of pages\" name=\"noOfPages\" id=\"noOfPages\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${noOfPages}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/>\r\n");
+      out.write("\" min=\"0\" pattern=\"[0-9]+\" title=\"Enter + Numbers Only\" required/>\r\n");
       out.write("                                    </div>\r\n");
       out.write("\r\n");
       out.write("                                </div>\r\n");
@@ -227,13 +234,7 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <button type=\"submit\" class=\"btn btn-primary\" name=\"Add\" value=\"Add\">Add</button>\r\n");
       out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <div class=\"col-sm-6 col-sm-offset-4\">\r\n");
-      out.write("                                        ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${error}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write(" \r\n");
-      out.write("                                    </div>\r\n");
-      out.write("                                </div>\r\n");
+      out.write("                                    <input type=\"hidden\" name=\"type\" value=\"add\"/>\r\n");
       out.write("                            </form>\r\n");
       out.write("\r\n");
       out.write("                        </div>\r\n");
@@ -277,9 +278,6 @@ public final class AddBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                });\r\n");
       out.write("                                            });\r\n");
       out.write("        </script>\r\n");
-      out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Footer.jsp", out, false);
-      out.write("\r\n");
       out.write("    </body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {

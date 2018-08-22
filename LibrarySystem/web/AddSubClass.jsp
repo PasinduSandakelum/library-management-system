@@ -6,14 +6,14 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.sql.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Add Main Classifications</title>
+        <title>Add Sub Classifications</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -40,9 +40,10 @@
         <div id="breadcrumb">
             <div class="container">	
                 <div class="breadcrumb">							
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="book.html">Books</a></li>		
-                    <li>AddBook</li>	
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="classification.jsp">Classification</a></li>		
+                    <li><a href="SubClassification.jsp">Sub Classification</a></li>	
+                    <li>Add Sub Classification</li>	
                 </div>		
             </div>	
         </div>
@@ -50,60 +51,42 @@
         <div class="container" style="color: #33334d">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
+                    ${error}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Add Sub Classifications</h3>
+                            <h3 class="panel-title">Sub classification details</h3>
                         </div>
                         <div class="panel-body">
                             <form id="addForm" method="get" class="form-horizontal" action="AddSub">
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="mainClassification">Main Classification:</label>
                                     <div class="col-sm-5">             
-                                        <select name="mainClassification" class="form-control" id="mainClassification">  
-                                            <option>Select</option>
-                                            <%
-                                                try {
-
-                                                    String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-                                                    String DB_URL = "jdbc:mysql://localhost:3306/library_system?useSSL=false";
-
-                                                    String USER = "root";
-                                                    String PASS = "1234";
-
-                                                    Class.forName(JDBC_DRIVER);
-                                                    Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
-                                                    String sql = "SELECT * FROM main_classification";
-                                                    PreparedStatement pst = con.prepareStatement(sql);
-                                                    ResultSet rs = pst.executeQuery();
-                                                    while (rs.next()) {
-                                            %>
-                                            <option><%=rs.getString("mainClassificationName")%></option> 
-
-                                            <%
-                                                    }
-                                                } catch (Exception e) {
-                                                    e.printStackTrace();
-                                                    out.println("Error " + e.getMessage());
-                                                }
-                                            %>
-
-                                            <!--                                            <option>Engineering</option>        -->
+                                        <select name="mainId" class="form-control" id="mainId" onchange="changeSub(this.form);" value="${mainId}" required>  
+                                            <option value="">Select</option>  
+                                            <!--<option>Engineering</option>-->  
+                                            <c:forEach var="item" items="${mainClassifications}">
+                                                <option value="${item.getMid()}" <c:if test="${item.getMid() eq mainId}" >Selected="true"</c:if>>${item.getMname()}</option>
+                                            </c:forEach>
                                         </select>         
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="mainId">Sub ID :</label>
+                                    <label class="col-sm-4 control-label" for="subId">Sub ID :</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter Sub Classification ID" name="mainId" id="mainId">
+                                        <input type="text" class="form-control" placeholder="Enter Sub Classification ID" name="subId" id="subId" required>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="mainClassificaton">Sub Classification :</label>
+                                    <label class="col-sm-4 control-label" for="subClassification">Sub Classification :</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter Sub Classification Name" id="mainClassificaton" name="subClassificaton">
+                                        <input type="text" class="form-control" placeholder="Enter Sub Classification Name" id="subClassification" name="subClassification" required>
                                     </div>
 
                                 </div>
@@ -112,17 +95,13 @@
                                         <button type="submit" class="btn btn-primary" name="Add" value="Add">Add</button>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-6 col-sm-offset-4">
-                                        ${error} 
-                                    </div>
-                                </div>
+                                
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <jsp:include page="Footer.jsp"/>
+        
     </body>
 </html>

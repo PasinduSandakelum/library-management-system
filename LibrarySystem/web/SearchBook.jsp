@@ -30,13 +30,13 @@
 
     </head>
     <body>
-<jsp:include page="Header.jsp"/>
+        <jsp:include page="Header.jsp"/>
 
         <div id="breadcrumb">
             <div class="container">	
                 <div class="breadcrumb">							
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="book.html">Books</a></li>		
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="book.jsp">Books</a></li>		
                     <li>Search Books</li>	
                 </div>		
             </div>	
@@ -47,9 +47,9 @@
 
                 <form action="SearchBook" method="get">
                     <div class="form-group">
-                        <div class="col-sm-2">
+<!--                        <div class="col-sm-2">
                             <label for="sname">Search : </label>
-                        </div>
+                        </div>-->
                         <div class="col-sm-4">             
                             <select name="selection" class="form-control" id="selection">  
                                 <option>Select</option>        
@@ -64,7 +64,11 @@
                             <input type="text" class="form-control" placeholder="Search" name="sname" id="sname">
                         </div>
                         <div class="col-sm-2">
-                            <button type="submit" class="btn btn-md"><span class="glyphicon glyphicon-search"></span></button>                        </div>
+                            <button type="submit" class="btn btn-md" name="type" value="search"><span class="glyphicon glyphicon-search"></span></button> 
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="SearchBook?type=all"><span class="btn btn-md" ><span class="glyphicon glyphicon-search"></span>View All</span></a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -98,9 +102,9 @@
                                 <td>${b.getBook().getIsbnNo()}</td>
                                 <td>${b.getBook().getNoOfPages()}</td> 
                                 <td>
-                                    <a href="Edit?type=edit&bookId=${b.getBook().getBookId()}" value="asas"><span class="glyphicon glyphicon-pencil"></span></a>                                    
+                                    <a href="Edit?type=edit&bookId=${b.getBook().getBookId()}" onclick="return confirm('Do you really want to update this ?');"><span class="glyphicon glyphicon-pencil"></span></a>                                    
                                     &nbsp;
-                                    <a href="DeleteBook?bookId=${b.getBook().getBookId()}&selection=<%=request.getParameter("selection")%>&sname=<%=request.getParameter("sname")%>" onclick="deleteRow(this)"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a href="DeleteBook?bookId=${b.getBook().getBookId()}&selection=<%=request.getParameter("selection")%>&sname=<%=request.getParameter("sname")%>" onclick="return confirm('Do you really want to delete this ?');"><span class="glyphicon glyphicon-trash"></span></a>
 
                                 </td>
                             </tr>
@@ -110,6 +114,6 @@
 
             </div>
         </div>
-        <jsp:include page="Footer.jsp"/>
+        
     </body>
 </html>

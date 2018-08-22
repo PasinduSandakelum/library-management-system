@@ -73,10 +73,20 @@ public class AddMain extends HttpServlet {
         try {
             boolean b = mainDao.addMainClassification(mainClass);
             if (b) {
-                request.setAttribute("error","<div class=\"alert alert-success\"> Successfully added !</div>");
+                request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-success alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Success,</strong>Main classification added ! <a href=\"SearchMain?type=all\"><span class=\"btn btn-md\" ><span class=\"glyphicon glyphicon-search\"></span>View All</span></a>\n"
+                        + "            </div>\n"
+                        + "        </div>");
                 request.getRequestDispatcher("/AddMainClass.jsp").forward(request, response);
             } else {
-                request.setAttribute("error","<div class=\"alert alert-warning\"> Main ID is alredy taken !</div>");
+                request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-warning alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Problem</strong>On adding!\n"
+                        + "            </div>\n"
+                        + "        </div>");
                 request.getRequestDispatcher("/AddMainClass.jsp").forward(request, response);
             }
                 

@@ -65,8 +65,7 @@ public class GetUpdate extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String btn = request.getParameter("Update");
-        if (btn.equals("UpdateBook")) {
+        
             String bookId = request.getParameter("bookId");
             String title = request.getParameter("title");
             String author = request.getParameter("author");
@@ -87,16 +86,26 @@ public class GetUpdate extends HttpServlet {
             try {
                 boolean b = bookDao.updateBook(book, subId);
                 if (b) {
-                    request.setAttribute("error", "<div class=\"alert alert-success\"> Successfully Updated !</div>");
+                    request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-success alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Success</strong>Book was updated!\n"
+                        + "            </div>\n"
+                        + "        </div>");
                     request.getRequestDispatcher("/EditBook.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("error", "<div class=\"alert alert-warning\"> Ooops, error !</div>");
+                    request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
+                        + "            <div class=\"alert alert-warning alert-dismissible\">\n"
+                        + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
+                        + "                <strong>Problem</strong>There is a problem!\n"
+                        + "            </div>\n"
+                        + "        </div>");
                     request.getRequestDispatcher("/EditBook.jsp").forward(request, response);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(BookServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
 
     }
 
