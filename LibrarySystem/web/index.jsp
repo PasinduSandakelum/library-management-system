@@ -30,28 +30,7 @@
     </head>
     <body>
         <jsp:include page="Header.jsp"/>
-        <section id="main-slider" class="no-margin">
-            <div class="carousel slide">      
-                <div class="carousel-inner">
-                    <div class="item active" style="background-image: url(images/slider/bg3.jpg); height: 530px;">
-                        <div class="container">
-                            <div class="row slide-margin">
-                                <div class="col-sm-6">
-                                    <div class="carousel-content">
-
-                                        <h2 class="animation animated-item-1">Welcome <span>Library System</span></h2>
-                                        <p class="animation animated-item-2">This is a online book library with large book stock...</p>
-                                        <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--/.item-->             
-                </div><!--/.carousel-inner-->
-            </div><!--/.carousel-->
-        </section><!--/#main-slider-->
+        <jsp:include page="crausol.jsp"></jsp:include>
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
@@ -83,7 +62,7 @@
                 </div>
 
             </div>
-        </div>
+            </div>
 
 
 

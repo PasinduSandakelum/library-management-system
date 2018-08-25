@@ -24,7 +24,7 @@ public class DbConnect {
     static final String DB_URL = "jdbc:mysql://localhost:3306/library_system?useSSL=false";
 
     static final String USER = "root";
-    static final String PASS = "1234";
+    static final String PASS = "manager";
     public static Connection getConnection() throws SQLException{
          Connection con = null;
     try {

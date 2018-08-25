@@ -64,7 +64,7 @@ public final class EditBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <meta charset=\"utf-8\">\r\n");
       out.write("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
-      out.write("        <title>Add Books</title>\r\n");
+      out.write("        <title>Update Books</title>\r\n");
       out.write("\r\n");
       out.write("        <!-- Bootstrap -->\r\n");
       out.write("        <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\r\n");
@@ -105,7 +105,7 @@ public final class EditBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <div class=\"breadcrumb\">\t\t\t\t\t\t\t\r\n");
       out.write("                    <li><a href=\"index.html\">Home</a></li>\r\n");
       out.write("                    <li><a href=\"book.html\">Books</a></li>\t\t\r\n");
-      out.write("                    <li>AddBook</li>\t\r\n");
+      out.write("                    <li>Update Books</li>\t\r\n");
       out.write("                </div>\t\t\r\n");
       out.write("            </div>\t\r\n");
       out.write("        </div>\r\n");
@@ -113,124 +113,121 @@ public final class EditBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"container\" style=\"color: #33334d\">\r\n");
       out.write("            <div class=\"row\">\r\n");
       out.write("                <div class=\"col-sm-8 col-sm-offset-2\">\r\n");
+      out.write("                    ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${error}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </div>\r\n");
+      out.write("            <div class=\"row\">\r\n");
+      out.write("                <div class=\"col-sm-8 col-sm-offset-2\">\r\n");
       out.write("\r\n");
       out.write("                    <div class=\"panel panel-default\">\r\n");
       out.write("                        <div class=\"panel-heading\">\r\n");
-      out.write("                            <h3 class=\"panel-title\">Update Books</h3>\r\n");
+      out.write("                            <h3 class=\"panel-title\">Book details</h3>\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <div class=\"panel-body\">\r\n");
-      out.write("                            \r\n");
-      out.write("                            <form id=\"editForm\" method=\"get\" class=\"form-horizontal\" action=\"GetUpdate\">\r\n");
-      out.write("\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"bookId\">Book ID : </label>\r\n");
-      out.write("                                    <div class=\"col-sm-5\">\r\n");
-      out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter book ID\" name=\"bookId\" id=\"bookId\" value=");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${bookEdit.getBookId()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write(" readonly/>\r\n");
+      out.write("                            <form id=\"addForm\" method=\"get\" class=\"\" action=\"GetUpdate\">\r\n");
+      out.write("                                <input type=\"hidden\" name=\"type\" value=\"update\"/>\r\n");
+      out.write("                                <div class=\"form-row\">\r\n");
+      out.write("                                    <div class=\"form-group col-md-4\">\r\n");
+      out.write("                                        <label for=\"bookId\">Book ID : </label>\r\n");
+      out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter book ID\" name=\"bookId\" id=\"bookId\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${bookIdEdit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" required>\r\n");
       out.write("                                    </div>\r\n");
+      out.write("                                    <div class=\"form-group col-md-4\">\r\n");
+      out.write("                                        <label for=\"yearOfPrint\">Year of Printed:</label>\r\n");
       out.write("\r\n");
+      out.write("                                        <div class='input-group date' id='datepicker1'>\r\n");
+      out.write("                                            <input type='text' class=\"form-control\" name=\"yearOfPrint\" id=\"yearOfPrint\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${yearOfPrintEdit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" required/>\r\n");
+      out.write("                                            <span class=\"input-group-addon\">\r\n");
+      out.write("                                                <span class=\"glyphicon glyphicon-calendar\"></span>\r\n");
+      out.write("                                            </span>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                    <div class=\"form-group col-md-4\">\r\n");
+      out.write("                                        <label for=\"lastPrintYear\">Last Printed Year:</label>\r\n");
+      out.write("                                        <div class='input-group date' id='datepicker2'>\r\n");
+      out.write("                                            <input type='text' class=\"form-control\" name=\"lastPrintYear\" id=\"lastPrintYear\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${lastPrintYearEdit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" required/>\r\n");
+      out.write("                                            <span class=\"input-group-addon\">\r\n");
+      out.write("                                                <span class=\"glyphicon glyphicon-calendar\"></span>\r\n");
+      out.write("                                            </span>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("\r\n");
+      out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"title\">Title:</label>\r\n");
-      out.write("                                    <div class=\"col-sm-5\">\r\n");
+      out.write("                                <div class=\"form-row\">\r\n");
+      out.write("                                    <div class=\"form-group col-md-6\">\r\n");
+      out.write("                                        <label for=\"title\">Title:</label>\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter book title\" id=\"title\" name=\"title\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${b.getBook().getTitle()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">\r\n");
-      out.write("                                    </div>\r\n");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${titleEdit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" required>\r\n");
       out.write("\r\n");
-      out.write("                                </div>\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"author\">Author:</label>\r\n");
-      out.write("                                    <div class=\"col-sm-5\">\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                    <div class=\"form-group col-md-6\">\r\n");
+      out.write("                                        <label for=\"author\">Author:</label>\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter book author\" name=\"author\" id=\"author\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${b.getBook().getAuthor()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">\r\n");
-      out.write("                                    </div>\r\n");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${authorEdit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" required>\r\n");
       out.write("\r\n");
+      out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"mainClassificationId\">Main Classification:</label>\r\n");
-      out.write("                                    <div class=\"col-sm-5\">             \r\n");
-      out.write("                                        <select name=\"mainId\" class=\"form-control\" id=\"mainId\" onchange=\"changeSub(this.form);\" value=\"");
+      out.write("                                <div class=\"form-row\">\r\n");
+      out.write("                                    <div class=\"form-group col-md-6\">\r\n");
+      out.write("                                        <label for=\"mainId\">Main Classification:</label>\r\n");
+      out.write("                                        <div>             \r\n");
+      out.write("                                            <select name=\"mainId\" class=\"form-control\" id=\"mainId\" onchange=\"changeSub(this.form);\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mainId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">  \r\n");
-      out.write("                                            <option value=\"0\">Select</option>  \r\n");
-      out.write("                                            <!--<option>Engineering</option>-->  \r\n");
-      out.write("                                            ");
+      out.write("\" required>  \r\n");
+      out.write("                                                <option value=\"\">Select</option>  \r\n");
+      out.write("                                                <!--<option>Engineering</option>-->  \r\n");
+      out.write("                                                ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("                                        </select>\r\n");
-      out.write("\r\n");
+      out.write("                                            </select>\r\n");
+      out.write("                                        </div>\r\n");
       out.write("                                    </div>\r\n");
-      out.write("                                </div>\r\n");
-      out.write("\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"subClassificationId\">Sub Classification:</label>\r\n");
-      out.write("                                    <div class=\"col-sm-5\"> \r\n");
-      out.write("\r\n");
-      out.write("                                        <select name=\"subClassificationId\" class=\"form-control\" id=\"subClassificationId\">  \r\n");
-      out.write("                                            <option>Select</option>\r\n");
-      out.write("                                            ");
+      out.write("                                    <div class=\"form-group col-md-6\">\r\n");
+      out.write("                                        <label for=\"subClassificationId\">Sub Classification:</label>\r\n");
+      out.write("                                        <div> \r\n");
+      out.write("                                            <select name=\"subClassificationId\" class=\"form-control\" id=\"subClassificationId\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${subId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" required>  \r\n");
+      out.write("                                                <option value=\"\">Select</option>\r\n");
+      out.write("                                                ");
       if (_jspx_meth_c_forEach_1(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("                                        </select>         \r\n");
-      out.write("                                    </div>\r\n");
+      out.write("                                            </select>         \r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                    </div>       \r\n");
       out.write("                                </div>\r\n");
-      out.write("\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"yearOfPrint\">Year of Printed:</label>\r\n");
-      out.write("\r\n");
-      out.write("                                    <div class='input-group date' id='datepicker1' class=\"col-sm-5\">\r\n");
-      out.write("                                        <input type='text' class=\"form-control\" name=\"yearOfPrint\" id=\"yearOfPrint\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${b.getBook().getYearOfPrint()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/>\r\n");
-      out.write("                                        <span class=\"input-group-addon\">\r\n");
-      out.write("                                            <span class=\"glyphicon glyphicon-calendar\"></span>\r\n");
-      out.write("                                        </span>\r\n");
-      out.write("                                    </div>\r\n");
-      out.write("                                </div>\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"lastPrintYear\">Last Printed Year:</label>\r\n");
-      out.write("                                    <div class='input-group date' id='datepicker2' class=\"col-sm-5\">\r\n");
-      out.write("                                        <input type='text' class=\"form-control\" name=\"lastPrintYear\" id=\"lastPrintYear\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${b.getBook().getLastPrintYear()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/>\r\n");
-      out.write("                                        <span class=\"input-group-addon\">\r\n");
-      out.write("                                            <span class=\"glyphicon glyphicon-calendar\"></span>\r\n");
-      out.write("                                        </span>\r\n");
-      out.write("                                    </div>\r\n");
-      out.write("\r\n");
-      out.write("                                </div>\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"isbnNo\">ISBN No:</label>\r\n");
-      out.write("                                    <div class=\"col-sm-5\">\r\n");
+      out.write("                                <div class=\"form-row\">\r\n");
+      out.write("                                    <div class=\"form-group col-md-6\">\r\n");
+      out.write("                                        <label for=\"isbnNo\">ISBN No:</label>\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter ISBN number\" name=\"isbnNo\" id=\"isbnNo\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${b.getBook().getIsbnNo()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">\r\n");
-      out.write("                                    </div>\r\n");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${isbnNoEdit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" required/>\r\n");
       out.write("\r\n");
-      out.write("                                </div>\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <label class=\"col-sm-4 control-label\" for=\"noOfPages\">No of Pages:</label>\r\n");
-      out.write("                                    <div class=\"col-sm-5\">\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                    <div class=\"form-group col-md-6\">\r\n");
+      out.write("                                        <label for=\"noOfPages\">No of Pages:</label>\r\n");
       out.write("                                        <input type=\"text\" class=\"form-control\" placeholder=\"Enter number of pages\" name=\"noOfPages\" id=\"noOfPages\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${b.getBook().getNoOfPages()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/>\r\n");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${noOfPagesEdit}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" min=\"0\" pattern=\"[0-9]+\" title=\"Enter + Numbers Only\" required/>\r\n");
       out.write("                                    </div>\r\n");
-      out.write("\r\n");
       out.write("                                </div>\r\n");
-      out.write("\r\n");
-      out.write("                                <div class=\"form-group\">\r\n");
-      out.write("                                    <div class=\"col-sm-9 col-sm-offset-4\">\r\n");
-      out.write("                                        <button type=\"submit\" class=\"btn btn-primary\" name=\"\" value=\"\">Edit</button>\r\n");
-      out.write("                                        \r\n");
+      out.write("                                <div class=\"form-row\">\r\n");
+      out.write("                                    <div class=\"form-group\">\r\n");
+      out.write("                                        <button type=\"submit\" class=\"btn btn-primary\" name=\"update\" value=\"update\" style=\"float: right;\">Update</button>\r\n");
       out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </form>\r\n");
-      out.write("                            \r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
@@ -272,9 +269,7 @@ public final class EditBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                });\r\n");
       out.write("                                            });\r\n");
       out.write("        </script>\r\n");
-      out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Footer.jsp", out, false);
-      out.write("\r\n");
+      out.write("        \r\n");
       out.write("    </body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {
@@ -306,7 +301,7 @@ public final class EditBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("                                                <option value=\"");
+          out.write("                                                    <option value=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.getMid()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write('"');
           out.write(' ');
@@ -315,7 +310,7 @@ public final class EditBook_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write('>');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.getMname()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</option>\r\n");
-          out.write("                                            ");
+          out.write("                                                ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -377,12 +372,17 @@ public final class EditBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("                                                <option value=\"");
+          out.write("                                                    <option value=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.getSid()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\"> ");
+          out.write('"');
+          out.write(' ');
+          if (_jspx_meth_c_if_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_1, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
+            return true;
+          out.write('>');
+          out.write(' ');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.getSname()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</option>\r\n");
-          out.write("                                            ");
+          out.write("                                                ");
           int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -399,6 +399,32 @@ public final class EditBook_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_th_c_forEach_1.doFinally();
       _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_1);
     }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_if_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_1, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_1)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_1 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_1);
+    _jspx_th_c_if_1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.getSid() eq subId}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_1 = _jspx_th_c_if_1.doStartTag();
+    if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("Selected=\"true\"");
+        int evalDoAfterBody = _jspx_th_c_if_1.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
     return false;
   }
 }

@@ -48,7 +48,7 @@
     <body>
 
         <jsp:include page="Header.jsp"/>
-       
+
         <div id="breadcrumb">
             <div class="container">	
                 <div class="breadcrumb">							
@@ -73,97 +73,88 @@
                             <h3 class="panel-title">Book details</h3>
                         </div>
                         <div class="panel-body">
-                            <form id="addForm" method="get" class="form-horizontal" action="BookServlet">
-
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="bookId">Book ID : </label>
-                                    <div class="col-sm-5">
+                            <form id="addForm" method="get" class="" action="BookServlet">
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="bookId">Book ID : </label>
                                         <input type="text" class="form-control" placeholder="Enter book ID" name="bookId" id="bookId" value="${bookId}" required>
                                     </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="yearOfPrint">Year of Printed:</label>
 
+                                        <div class='input-group date' id='datepicker1'>
+                                            <input type='text' class="form-control" name="yearOfPrint" id="yearOfPrint" value="${yearOfPrint}" required/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="lastPrintYear">Last Printed Year:</label>
+                                        <div class='input-group date' id='datepicker2'>
+                                            <input type='text' class="form-control" name="lastPrintYear" id="lastPrintYear" value="${lastPrintYear}" required/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="title">Title:</label>
-                                    <div class="col-sm-5">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="title">Title:</label>
                                         <input type="text" class="form-control" placeholder="Enter book title" id="title" name="title" value="${title}" required>
-                                    </div>
 
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="author">Author:</label>
-                                    <div class="col-sm-5">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="author">Author:</label>
                                         <input type="text" class="form-control" placeholder="Enter book author" name="author" id="author" value="${author}" required>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="mainId">Main Classification:</label>
-                                    <div class="col-sm-5">             
-                                        <select name="mainId" class="form-control" id="mainId" onchange="changeSub(this.form);" value="${mainId}" required>  
-                                            <option value="">Select</option>  
-                                            <!--<option>Engineering</option>-->  
-                                            <c:forEach var="item" items="${mainClassifications}">
-                                                <option value="${item.getMid()}" <c:if test="${item.getMid() eq mainId}" >Selected="true"</c:if>>${item.getMname()}</option>
-                                            </c:forEach>
-                                        </select>
 
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="subClassificationId">Sub Classification:</label>
-                                    <div class="col-sm-5"> 
-
-                                        <select name="subClassificationId" class="form-control" id="subClassificationId" required>  
-                                            <option value="">Select</option>
-                                            <c:forEach var="item" items="${subClassifications}">
-                                                <option value="${item.getSid()}"> ${item.getSname()}</option>
-                                            </c:forEach>
-                                        </select>         
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="mainId">Main Classification:</label>
+                                        <div>             
+                                            <select name="mainId" class="form-control" id="mainId" onchange="changeSub(this.form);" value="${mainId}" required>  
+                                                <option value="">Select</option>  
+                                                <!--<option>Engineering</option>-->  
+                                                <c:forEach var="item" items="${mainClassifications}">
+                                                    <option value="${item.getMid()}" <c:if test="${item.getMid() eq mainId}" >Selected="true"</c:if>>${item.getMname()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
                                     </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="subClassificationId">Sub Classification:</label>
+                                        <div> 
+                                            <select name="subClassificationId" class="form-control" id="subClassificationId" required>  
+                                                <option value="">Select</option>
+                                                <c:forEach var="item" items="${subClassifications}">
+                                                    <option value="${item.getSid()}"> ${item.getSname()}</option>
+                                                </c:forEach>
+                                            </select>         
+                                        </div>
+                                    </div>       
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="yearOfPrint">Year of Printed:</label>
-
-                                    <div class='input-group date' id='datepicker1' class="col-sm-3">
-                                        <input type='text' class="form-control" name="yearOfPrint" id="yearOfPrint" value="${yearOfPrint}" required/>
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="lastPrintYear">Last Printed Year:</label>
-                                    <div class='input-group date' id='datepicker2' class="col-sm-3">
-                                        <input type='text' class="form-control" name="lastPrintYear" id="lastPrintYear" value="${lastPrintYear}" required/>
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="isbnNo">ISBN No:</label>
-                                    <div class="col-sm-5">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="isbnNo">ISBN No:</label>
                                         <input type="text" class="form-control" placeholder="Enter ISBN number" name="isbnNo" id="isbnNo" value="${isbnNo}" required/>
-                                    </div>
 
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label" for="noOfPages">No of Pages:</label>
-                                    <div class="col-sm-5">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="noOfPages">No of Pages:</label>
                                         <input type="text" class="form-control" placeholder="Enter number of pages" name="noOfPages" id="noOfPages" value="${noOfPages}" min="0" pattern="[0-9]+" title="Enter + Numbers Only" required/>
                                     </div>
-
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-9 col-sm-offset-4">
-                                        <button type="submit" class="btn btn-primary" name="Add" value="Add">Add</button>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary" name="Add" value="Add" style="float: right;">Add Book</button>
                                     </div>
                                 </div>
-                                    <input type="hidden" name="type" value="add"/>
+
+                                <input type="hidden" name="type" value="add"/>
                             </form>
 
                         </div>
@@ -174,38 +165,38 @@
 
         <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
         <script>
-                                            $(function () {
-                                                $('#datepicker1').datepicker({
-                                                    format: "yyyy",
-                                                    autoclose: true,
-                                                    viewMode: "years",
-                                                    minViewMode: "years",
-                                                    todayHighlight: true,
-                                                    showOtherMonths: true,
-                                                    selectOtherMonths: true,
-                                                    autoclose: true,
-                                                    changeMonth: false,
-                                                    changeYear: true,
-                                                    orientation: "button"
-                                                }).on('changeYear', function (e) {
+                                                $(function () {
+                                                    $('#datepicker1').datepicker({
+                                                        format: "yyyy",
+                                                        autoclose: true,
+                                                        viewMode: "years",
+                                                        minViewMode: "years",
+                                                        todayHighlight: true,
+                                                        showOtherMonths: true,
+                                                        selectOtherMonths: true,
+                                                        autoclose: true,
+                                                        changeMonth: false,
+                                                        changeYear: true,
+                                                        orientation: "bottom"
+                                                    }).on('changeYear', function (e) {
 
-                                                });
-                                                $('#datepicker2').datepicker({
-                                                    format: "yyyy",
-                                                    autoclose: true,
-                                                    viewMode: "years",
-                                                    minViewMode: "years",
-                                                    todayHighlight: true,
-                                                    showOtherMonths: true,
-                                                    selectOtherMonths: true,
-                                                    autoclose: true,
-                                                    changeMonth: false,
-                                                    changeYear: true,
-                                                    orientation: "button"
-                                                }).on('changeYear', function (e) {
+                                                    });
+                                                    $('#datepicker2').datepicker({
+                                                        format: "yyyy",
+                                                        autoclose: true,
+                                                        viewMode: "years",
+                                                        minViewMode: "years",
+                                                        todayHighlight: true,
+                                                        showOtherMonths: true,
+                                                        selectOtherMonths: true,
+                                                        autoclose: true,
+                                                        changeMonth: false,
+                                                        changeYear: true,
+                                                        orientation: "bottom"
+                                                    }).on('changeYear', function (e) {
 
+                                                    });
                                                 });
-                                            });
         </script>
     </body>
 </html>

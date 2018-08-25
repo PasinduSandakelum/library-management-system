@@ -40,26 +40,6 @@
             </div>	
         </div>
 
-        <section id="main-slider" class="no-margin">
-            <div class="carousel slide">      
-                <div class="carousel-inner">
-                    <div class="item active" style="background-image: url(images/slider/img2.jpg); height: 500px;">
-                        <div class="container">
-                            <div class="row slide-margin">
-                                <div class="col-sm-6">
-                                    <div class="carousel-content">
-                                        <h2 class="animation animated-item-1">Book Classification <span>Section</span></h2>
-                                        <p class="animation animated-item-2">Search for classifications and do editing here..</p>
-                                        <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--/.item-->             
-                </div><!--/.carousel-inner-->
-            </div><!--/.carousel-->
-        </section><!--/#main-slider-->
-
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">

@@ -89,7 +89,7 @@ public class GetUpdate extends HttpServlet {
                     request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
                         + "            <div class=\"alert alert-success alert-dismissible\">\n"
                         + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
-                        + "                <strong>Success</strong>Book was updated!\n"
+                        + "                <strong>Success</strong>Book was updated! <a href=\"SearchBook?type=all\"><span class=\"btn btn-md\" ><span class=\"glyphicon glyphicon-search\"></span>View All</span></a>\n"
                         + "            </div>\n"
                         + "        </div>");
                     request.getRequestDispatcher("/EditBook.jsp").forward(request, response);
