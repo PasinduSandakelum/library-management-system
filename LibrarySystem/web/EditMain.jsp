@@ -26,11 +26,7 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="js/jquery.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/validator.js"></script>
-        <script src="js/validator.min.js"></script>
+
     </head>
     <body>
         <jsp:include page="Header.jsp"/>
@@ -73,7 +69,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="mainClassificaton">Main Classification :</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter Main Classification Name" id="mainClassificaton" name="mainClassification" value="${mainName}" required>
+                                        <input type="text" class="form-control" placeholder="Enter Main Classification Name" id="mainClassificaton" name="mainClassification" value="${mainName}" required/>
                                     </div>
 
                                 </div>
@@ -82,13 +78,17 @@
                                         <button type="submit" class="btn btn-primary" name="Update" value="UpdateMain">Update</button>
                                     </div>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/validator.js"></script>
+        <script src="js/validator.min.js"></script>
     </body>
 </html>

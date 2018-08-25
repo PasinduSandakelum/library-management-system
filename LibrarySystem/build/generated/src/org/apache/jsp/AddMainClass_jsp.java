@@ -136,9 +136,7 @@ public final class AddMainClass_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
-      out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Footer.jsp", out, false);
-      out.write("\r\n");
+      out.write("        \r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

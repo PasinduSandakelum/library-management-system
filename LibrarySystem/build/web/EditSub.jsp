@@ -67,7 +67,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="mainClassification">Main Classification:</label>
                                     <div class="col-sm-5">             
-                                        <select name="mainId" class="form-control" id="mainId" onchange="changeSub(this.form);" value="${mainId}" required>  
+                                        <select name="mainId" class="form-control" id="mainId" onchange="changeSub(this.form);" value="${mainId}" required/>  
                                             <option value="">Select</option>  
                                             <!--<option>Engineering</option>-->  
                                             <c:forEach var="item" items="${mainClassifications}">
@@ -87,13 +87,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label" for="subClassification">Sub Classification :</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="Enter Sub Classification Name" id="subClassification" name="subClassification" value="${subName}" required>
+                                        <input type="text" class="form-control" placeholder="Enter Sub Classification Name" id="subClassification" name="subClassification" value="${subName}" required/>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-9 col-sm-offset-4">
-                                        <button type="submit" class="btn btn-primary" name="Add" value="Add">Add</button>
+                                        <button type="submit" class="btn btn-primary" name="update" value="update">Add</button>
                                     </div>
                                 </div>
                             </form>

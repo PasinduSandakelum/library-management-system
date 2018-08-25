@@ -84,7 +84,7 @@ public class AddSub extends HttpServlet {
                 request.setAttribute("error", "<div class=\"col-sm-8 col-sm-offset-2\">\n"
                         + "            <div class=\"alert alert-success alert-dismissible\">\n"
                         + "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n"
-                        + "                <strong>Problem,</strong>On adding ! \n"
+                        + "                <strong>Warning</strong>Sub ID already exists.! \n"
                         + "            </div>\n"
                         + "        </div>");
                 request.getRequestDispatcher("/AddSubClass.jsp").forward(request, response);
